@@ -1,0 +1,3109 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>پروژه مهر ۱۴۰۵-۱۴۰۶ | دبستان شهید نیاسری ۱</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --navy: #1a3a5c;
+  --navy-dark: #0f2440;
+  --navy-light: #2a5298;
+  --gold: #c9a227;
+  --gold-light: #e8c547;
+  --gold-pale: #fdf3d0;
+  --cream: #fafaf7;
+  --white: #ffffff;
+  --gray-50: #f8f9fa;
+  --gray-100: #f0f1f3;
+  --gray-200: #e0e3e8;
+  --gray-300: #c8cdd6;
+  --gray-500: #8892a4;
+  --gray-700: #4a5568;
+  --gray-900: #1a202c;
+  --green: #2d7a4f;
+  --green-light: #ebf7f0;
+  --red: #c0392b;
+  --red-light: #fdf0ee;
+  --blue: #2563eb;
+  --blue-light: #eff6ff;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.1);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 16px 48px rgba(0,0,0,0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+  background: var(--cream);
+  color: var(--gray-900);
+  min-height: 100vh;
+  direction: rtl;
+}
+
+/* ─── LAYOUT ─── */
+.app-layout { display: flex; min-height: 100vh; }
+
+/* ─── SIDEBAR ─── */
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy) 60%, #1e4a7a 100%);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 100;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.2);
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  padding: 28px 20px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+}
+
+.sidebar-logo {
+  width: 72px;
+  height: 72px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 32px;
+  box-shadow: 0 4px 16px rgba(201,162,39,0.4);
+}
+
+.sidebar-title {
+  color: var(--gold-light);
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.sidebar-subtitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 11.5px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.sidebar-year {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(201,162,39,0.2);
+  border: 1px solid rgba(201,162,39,0.4);
+  color: var(--gold-light);
+  padding: 3px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sidebar-nav { padding: 16px 12px; flex: 1; }
+
+.nav-section-label {
+  color: rgba(255,255,255,0.35);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 12px 10px 6px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 2px;
+  color: rgba(255,255,255,0.75);
+  font-size: 13.5px;
+  font-weight: 500;
+  user-select: none;
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+.nav-item.active {
+  background: linear-gradient(135deg, rgba(201,162,39,0.25), rgba(201,162,39,0.1));
+  border: 1px solid rgba(201,162,39,0.3);
+  color: var(--gold-light);
+}
+
+.nav-item .nav-icon { font-size: 17px; min-width: 20px; text-align: center; }
+
+.nav-badge {
+  margin-right: auto;
+  background: var(--gold);
+  color: var(--navy-dark);
+  font-size: 10px;
+  font-weight: 800;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+/* ─── MAIN ─── */
+.main-content {
+  flex: 1;
+  margin-right: 280px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  background: var(--white);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+
+.topbar-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+.topbar-actions { display: flex; gap: 10px; align-items: center; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-primary { background: var(--navy); color: #fff; }
+.btn-primary:hover { background: var(--navy-dark); box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.btn-gold { background: var(--gold); color: var(--navy-dark); }
+.btn-gold:hover { background: var(--gold-light); box-shadow: 0 4px 12px rgba(201,162,39,0.4); transform: translateY(-1px); }
+.btn-outline { background: transparent; color: var(--navy); border: 1.5px solid var(--gray-200); }
+.btn-outline:hover { border-color: var(--navy); background: var(--gray-50); }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { opacity: 0.9; }
+.btn-green { background: var(--green); color: #fff; }
+.btn-green:hover { opacity: 0.9; }
+.btn-sm { padding: 6px 13px; font-size: 12.5px; }
+.btn-icon { padding: 9px; }
+
+.page-body { padding: 32px; flex: 1; }
+
+/* ─── PAGES ─── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ─── DASHBOARD ─── */
+.dashboard-hero {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-light) 100%);
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  margin-bottom: 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-hero::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  left: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(201,162,39,0.15) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.dashboard-hero::after {
+  content: '🌸';
+  position: absolute;
+  bottom: -20px;
+  left: 20px;
+  font-size: 120px;
+  opacity: 0.06;
+}
+
+.hero-content { position: relative; z-index: 1; }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(201,162,39,0.2);
+  border: 1px solid rgba(201,162,39,0.4);
+  color: var(--gold-light);
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  color: var(--white);
+  font-size: 36px;
+  font-weight: 900;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.hero-title span { color: var(--gold-light); }
+
+.hero-subtitle {
+  color: rgba(255,255,255,0.7);
+  font-size: 15px;
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  transition: all 0.2s;
+  cursor: default;
+}
+
+.stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.stat-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.stat-icon.blue { background: var(--blue-light); }
+.stat-icon.gold { background: var(--gold-pale); }
+.stat-icon.green { background: var(--green-light); }
+.stat-icon.red { background: var(--red-light); }
+
+.stat-value { font-size: 32px; font-weight: 900; color: var(--navy); margin-bottom: 4px; }
+.stat-label { font-size: 13px; color: var(--gray-500); font-weight: 500; }
+.stat-change { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 6px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 28px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 28px; }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--gray-100);
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.card-body { padding: 20px 24px; }
+
+/* ─── WORKGROUPS ─── */
+.workgroups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 20px;
+  margin-bottom: 28px;
+}
+
+.wg-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--gray-100);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.wg-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+
+.wg-header {
+  padding: 20px 22px 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wg-num {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.wg-info h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.wg-info p { font-size: 12px; color: var(--gray-500); }
+
+.wg-progress {
+  padding: 0 22px 14px;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.progress-label { font-size: 12px; color: var(--gray-500); }
+.progress-val { font-size: 12px; font-weight: 700; color: var(--navy); }
+
+.progress-bar {
+  height: 6px;
+  background: var(--gray-100);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 10px;
+  transition: width 0.6s ease;
+}
+
+.wg-footer {
+  padding: 12px 22px;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-100);
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.wg-tag {
+  background: var(--gray-100);
+  color: var(--gray-700);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+/* Color classes for workgroups */
+.wg-c1 .wg-num { background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+.wg-c2 .wg-num { background: linear-gradient(135deg, #059669, #047857); }
+.wg-c3 .wg-num { background: linear-gradient(135deg, #d97706, #b45309); }
+.wg-c4 .wg-num { background: linear-gradient(135deg, #7c3aed, #6d28d9); }
+.wg-c5 .wg-num { background: linear-gradient(135deg, #dc2626, #b91c1c); }
+.wg-c6 .wg-num { background: linear-gradient(135deg, #0891b2, #0e7490); }
+.wg-c7 .wg-num { background: linear-gradient(135deg, #c2410c, #9a3412); }
+
+.wg-c1 .progress-fill { background: linear-gradient(90deg, #2563eb, #60a5fa); }
+.wg-c2 .progress-fill { background: linear-gradient(90deg, #059669, #34d399); }
+.wg-c3 .progress-fill { background: linear-gradient(90deg, #d97706, #fbbf24); }
+.wg-c4 .progress-fill { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.wg-c5 .progress-fill { background: linear-gradient(90deg, #dc2626, #f87171); }
+.wg-c6 .progress-fill { background: linear-gradient(90deg, #0891b2, #22d3ee); }
+.wg-c7 .progress-fill { background: linear-gradient(90deg, #c2410c, #fb923c); }
+
+/* ─── CHECKLIST ─── */
+.checklist-section { margin-bottom: 24px; }
+.checklist-section-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy);
+  padding: 10px 0 8px;
+  border-bottom: 2px solid var(--gold);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s;
+  border-bottom: 1px solid var(--gray-50);
+}
+
+.checklist-item:hover { background: var(--gray-50); }
+
+.checklist-item:last-child { border-bottom: none; }
+
+.check-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--gray-300);
+  border-radius: 5px;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: transparent;
+}
+
+.check-text { font-size: 13.5px; color: var(--gray-700); line-height: 1.6; flex: 1 1 220px; font-weight: 500; }
+.check-resp { font-size: 11.5px; color: var(--gray-500); min-width: 80px; text-align: center; }
+
+/* ─── CHECKLIST ACCORDION + DOCS ─── */
+.checklist-item-wrapper { margin-bottom: 6px; }
+.checklist-item { cursor: pointer; border-right: 4px solid var(--gray-300); background: var(--gray-50); border-radius: var(--radius-sm); }
+.checklist-item.status-notstarted { border-right-color: var(--red); background: var(--red-light); }
+.checklist-item.status-progress { border-right-color: var(--gold); background: var(--gold-pale); }
+.checklist-item.status-done { border-right-color: var(--green); background: var(--green-light); }
+.checklist-item.status-notstarted .check-box { border-color: var(--red); color: var(--red); }
+.checklist-item.status-progress .check-box { border-color: var(--gold); color: var(--gold); background: rgba(201,162,39,0.15); }
+.checklist-item.status-done .check-box { background: var(--green); border-color: var(--green); color: white; }
+.checklist-status-select {
+  font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 8px;
+  border: 1px solid var(--gray-300); background: var(--white); cursor: pointer; align-self: center;
+}
+.checklist-resp-input {
+  font-size: 12px; padding: 4px 8px; border-radius: 8px;
+  border: 1px solid var(--gray-300); background: var(--white); align-self: center;
+  width: 120px;
+}
+.checklist-resp-input::placeholder { color: var(--gray-400); }
+.checklist-item.status-done .checklist-status-select { color: var(--green); border-color: rgba(45,122,79,0.4); }
+.checklist-item.status-progress .checklist-status-select { color: #92720f; border-color: rgba(201,162,39,0.5); }
+.checklist-item.status-notstarted .checklist-status-select { color: var(--red); border-color: rgba(192,57,43,0.4); }
+.doc-count-badge {
+  font-size: 11px; font-weight: 600; color: var(--gray-500);
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 20px; padding: 2px 10px; white-space: nowrap; align-self: center;
+}
+.expand-arrow { align-self: center; color: var(--gray-400); transition: transform 0.2s; font-size: 13px; }
+.checklist-item.expanded .expand-arrow { transform: rotate(180deg); }
+
+.checklist-add-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 1px dashed var(--gray-300);
+  border-radius: var(--radius-sm);
+  flex-wrap: wrap;
+}
+.checklist-add-row input { flex: 1 1 220px; }
+.checklist-add-row .btn { flex-shrink: 0; }
+.checklist-item-delete { flex-shrink: 0; }
+.checklist-expand {
+  display: none;
+  padding: 12px 14px 16px;
+  background: var(--gray-50);
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  margin: -4px 4px 6px;
+  border: 1px solid var(--gray-200);
+  border-top: none;
+}
+.checklist-expand.open { display: block; }
+.doc-upload-row { display: flex; gap: 10px; margin-bottom: 12px; }
+.doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.doc-item {
+  position: relative; border-radius: var(--radius-sm); overflow: hidden;
+  border: 1px solid var(--gray-200); background: var(--gray-50); cursor: zoom-in;
+}
+.doc-item img { width: 100%; aspect-ratio: 4/3; object-fit: contain; display: block; background: var(--gray-50); }
+.doc-item.doc-pdf {
+  aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; padding: 10px; text-align: center; background: var(--white);
+}
+.doc-pdf-icon { font-size: 36px; }
+.doc-pdf-name { font-size: 11px; color: var(--gray-700); word-break: break-all; line-height: 1.3; }
+.doc-item .gallery-del { position: absolute; top: 6px; left: 6px; }
+
+/* ─── FORMS ─── */
+.form-section {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1px solid var(--gray-200);
+  padding: 28px;
+  margin-bottom: 20px;
+}
+
+.form-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--gold-pale);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+.form-full { grid-column: 1 / -1; }
+
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gray-700);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.required::after { content: ' *'; color: var(--red); }
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 13.5px;
+  color: var(--gray-900);
+  background: var(--white);
+  transition: all 0.2s;
+  outline: none;
+  direction: rtl;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26,58,92,0.08);
+}
+
+.form-input::placeholder { color: var(--gray-300); }
+.form-textarea { resize: vertical; min-height: 80px; }
+
+/* ─── TABLE ─── */
+.table-wrap { overflow-x: auto; }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+thead tr {
+  background: var(--navy);
+  color: var(--white);
+}
+
+thead th {
+  padding: 13px 16px;
+  text-align: right;
+  font-weight: 600;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--gray-100);
+  transition: background 0.15s;
+}
+
+tbody tr:hover { background: var(--gray-50); }
+tbody tr:last-child { border-bottom: none; }
+
+tbody td {
+  padding: 12px 16px;
+  color: var(--gray-700);
+  vertical-align: middle;
+}
+
+.td-name { font-weight: 600; color: var(--navy); }
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.status-done { background: var(--green-light); color: var(--green); }
+.status-pending { background: #fff7ed; color: #c2410c; }
+.status-review { background: var(--blue-light); color: var(--blue); }
+
+/* ─── PRINT FORM ─── */
+.print-form-wrapper {
+  background: var(--white);
+  border: 2px solid var(--gray-200);
+  border-radius: var(--radius);
+  padding: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 13.5px;
+}
+
+.print-form-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--navy);
+  margin-bottom: 6px;
+  padding-bottom: 10px;
+  border-bottom: 3px double var(--navy);
+}
+
+.print-form-subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: var(--gray-500);
+  margin-bottom: 24px;
+}
+
+.print-header-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.print-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--gray-300);
+}
+
+.print-field label { font-weight: 700; font-size: 13px; white-space: nowrap; color: var(--navy); }
+.print-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--gray-900);
+  background: transparent;
+  direction: rtl;
+}
+
+.print-section {
+  background: var(--navy);
+  color: var(--white);
+  padding: 7px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  margin: 16px 0 8px;
+}
+
+.print-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.print-line {
+  border-bottom: 1px dashed var(--gray-300);
+  padding: 9px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.print-line::before {
+  content: '•';
+  color: var(--navy);
+  font-size: 16px;
+}
+
+.print-line input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  background: transparent;
+  direction: rtl;
+}
+
+.print-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+.print-table th { background: var(--navy); color: white; padding: 9px 12px; text-align: right; font-weight: 600; }
+.print-table td { border: 1px solid var(--gray-200); padding: 9px 12px; min-height: 32px; }
+.print-table td input { width: 100%; border: none; outline: none; font-family: inherit; font-size: 13px; background: transparent; direction: rtl; }
+
+.sign-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+  text-align: center;
+}
+
+.sign-box { border-top: 1.5px solid var(--gray-300); padding-top: 10px; }
+.sign-label { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 30px; }
+
+/* ─── MODAL ─── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.modal-overlay.open { opacity: 1; pointer-events: all; }
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  transition: transform 0.25s;
+}
+
+.modal-overlay.open .modal { transform: translateY(0); }
+
+.modal-header {
+  padding: 24px 28px 20px;
+  border-bottom: 1px solid var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--white);
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  z-index: 10;
+}
+
+.modal-title { font-size: 18px; font-weight: 800; color: var(--navy); }
+.modal-close {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: var(--gray-200); }
+.modal-body { padding: 24px 28px 28px; }
+
+/* ─── TABS ─── */
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--gray-100);
+  padding: 4px;
+  border-radius: 10px;
+  margin-bottom: 24px;
+}
+
+.tab {
+  flex: 1;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.tab.active {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ─── NOTIFICATION ─── */
+.notification {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  background: var(--navy);
+  color: white;
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: var(--shadow-xl);
+  z-index: 2000;
+  transform: translateY(100px);
+  transition: transform 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 360px;
+}
+
+.notification.show { transform: translateY(0); }
+.notification.success { background: var(--green); }
+.notification.error { background: var(--red); }
+
+/* ─── SEARCH ─── */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: 10px;
+  padding: 8px 14px;
+  margin-bottom: 20px;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  background: transparent;
+  direction: rtl;
+}
+
+.search-bar:focus-within {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(26,58,92,0.06);
+}
+
+/* ─── EMPTY STATE ─── */
+.empty-state {
+  text-align: center;
+  padding: 64px 32px;
+  color: var(--gray-500);
+}
+
+.empty-state .empty-icon { font-size: 56px; margin-bottom: 16px; opacity: 0.6; }
+.empty-state h3 { font-size: 16px; font-weight: 700; color: var(--gray-700); margin-bottom: 8px; }
+.empty-state p { font-size: 13.5px; line-height: 1.7; }
+
+/* ─── HEADER ORNAMENT ─── */
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--navy);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 22px;
+  background: linear-gradient(180deg, var(--gold), var(--gold-light));
+  border-radius: 4px;
+}
+
+/* ─── ANNOUNCEMENT FORM CARD ─── */
+.announce-card {
+  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  margin-bottom: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.announce-card::before {
+  content: '📋';
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 80px;
+  opacity: 0.08;
+}
+
+.announce-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.announce-subtitle {
+  font-size: 13px;
+  opacity: 0.7;
+  margin-bottom: 18px;
+}
+
+/* ─── PRINT STYLES ─── */
+@media print {
+  .sidebar, .topbar, .topbar-actions, .btn, .no-print { display: none !important; }
+  .main-content { margin-right: 0 !important; }
+  .page-body { padding: 0 !important; }
+  .print-form-wrapper { border: none; padding: 0; }
+
+  /* عنوان کارگروه‌ها هنگام چاپ باید بالای صفحه و خوانا باشد (بدون وابستگی به چاپ پس‌زمینه رنگی) */
+  .announce-card {
+    background: #fff !important;
+    color: var(--navy-dark) !important;
+    border: 2px solid var(--navy-dark);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+  .announce-card::before { display: none; }
+  .announce-title { color: var(--navy-dark) !important; }
+  .announce-subtitle { color: var(--gray-600) !important; opacity: 1; }
+}
+
+/* ─── IMAGE GALLERY ─── */
+.gallery-upload-label {
+  display: inline-flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  aspect-ratio: 4 / 3;
+  background: var(--gray-50);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: contain; cursor: zoom-in; display: block; background: var(--gray-50);
+}
+.gallery-item .gallery-del {
+  position: absolute; top: 6px; left: 6px;
+  background: rgba(192,57,43,0.9); color: #fff; border: none;
+  width: 26px; height: 26px; border-radius: 50%; cursor: pointer;
+  font-size: 13px; line-height: 1; display: flex; align-items: center; justify-content: center;
+}
+.gallery-item.gallery-pdf {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; padding: 10px; text-align: center; background: var(--white); cursor: zoom-in;
+}
+.gallery-empty {
+  color: var(--gray-500); font-size: 13px; padding: 16px; text-align: center;
+  grid-column: 1 / -1;
+}
+@media print { .gallery-section .btn, .gallery-del, input[type=file] { display: none !important; } }
+
+/* ─── SECTION LINKS ─── */
+.link-add-row { display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
+.link-add-row input { flex: 1; min-width: 140px; }
+.link-list { display: flex; flex-direction: column; gap: 8px; }
+.link-chip {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: var(--radius-sm); padding: 8px 12px;
+}
+.link-chip a {
+  flex: 1; color: var(--navy); font-weight: 600; font-size: 13px;
+  text-decoration: none; display: flex; align-items: center; gap: 6px;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.link-chip a:hover { text-decoration: underline; color: var(--gold-dark); }
+.link-chip .link-url { font-size: 11px; color: var(--gray-500); font-weight: 400; }
+.link-empty { color: var(--gray-500); font-size: 13px; padding: 8px 0; }
+@media print { .link-section .btn, .link-add-row, .link-chip .link-del { display: none !important; } }
+.item-link-block { margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--gray-200); }
+.item-link-header { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-size: 12.5px; font-weight: 700; color: var(--gray-700); }
+.link-plus-btn { width: 24px; height: 24px; padding: 0; border-radius: 50%; font-size: 15px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+@media print { .item-link-block .btn, .item-link-block .link-add-row, .item-link-block .link-del { display: none !important; } }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .sidebar { width: 240px; min-width: 240px; }
+  .main-content { margin-right: 240px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
+  .hero-title { font-size: 26px; }
+  .wg-layout { grid-template-columns: 1fr; }
+}
+
+/* ─── WORKGROUP LAYOUT (اعضا / مسئول اجرا / زمان اجرا) ─── */
+.wg-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+.wg-team-card .card-body { display: flex; flex-direction: column; gap: 14px; }
+
+.wg-team-list { display: flex; flex-direction: column; gap: 8px; }
+
+.wg-team-empty {
+  font-size: 12.5px;
+  color: var(--gray-400);
+  text-align: center;
+  padding: 14px 6px;
+  border: 1px dashed var(--gray-200);
+  border-radius: var(--radius-sm);
+}
+
+.wg-team-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid var(--gray-100);
+  border-radius: var(--radius-sm);
+  background: var(--gray-50);
+}
+
+.wg-team-member-info { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.wg-team-member-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+.wg-team-member-role { font-size: 11.5px; color: var(--gray-500); }
+
+.wg-team-add-row { display: flex; flex-direction: column; gap: 8px; }
+.wg-team-add-row .btn { align-self: flex-start; }
+
+.wg-team-divider { height: 1px; background: var(--gray-100); margin: 2px 0; }
+
+.wg-team-card .form-group { margin: 0; }
+.wg-team-card .form-label { margin-bottom: 6px; display: block; }
+
+/* ─── TIMELINE ─── */
+.timeline { position: relative; padding-right: 28px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--gray-200);
+}
+
+.timeline-item { position: relative; padding-bottom: 24px; }
+.timeline-dot {
+  width: 16px;
+  height: 16px;
+  background: var(--navy);
+  border-radius: 50%;
+  position: absolute;
+  right: -28px;
+  top: 4px;
+  border: 3px solid var(--white);
+  box-shadow: 0 0 0 2px var(--navy);
+}
+
+.timeline-dot.gold { background: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+.timeline-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+
+.timeline-time { font-size: 11.5px; color: var(--gray-500); font-weight: 600; margin-bottom: 4px; }
+.timeline-content { font-size: 13.5px; color: var(--gray-700); line-height: 1.6; }
+.timeline-meta { font-size: 12px; color: var(--gray-400); margin-top: 4px; }
+
+/* ─── MEMBERS ─── */
+.member-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--gray-100);
+  margin-bottom: 8px;
+  transition: all 0.2s;
+}
+
+.member-card:hover { border-color: var(--navy); background: var(--gray-50); }
+
+.member-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-light));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.member-info h4 { font-size: 14px; font-weight: 700; color: var(--navy); }
+.member-info p { font-size: 12px; color: var(--gray-500); }
+.member-badge { margin-right: auto; }
+
+/* Action row */
+.action-row {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid var(--gray-100);
+  margin-top: 16px;
+}
+</style>
+</head>
+<body>
+
+<div class="app-layout">
+
+<!-- ─── SIDEBAR ─── -->
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-logo">🌸</div>
+    <div class="sidebar-title">سامانه پروژه مهر</div>
+    <div class="sidebar-subtitle">معاونت آموزش ابتدایی استان البرز<br>دبستان شهید نیاسری ۱</div>
+    <span class="sidebar-year">سال تحصیلی ۱۴۰۵-۱۴۰۶</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">منوی اصلی</div>
+    <div class="nav-item active" onclick="showPage('dashboard')">
+      <span class="nav-icon">🏠</span> داشبورد
+    </div>
+    <div class="nav-item" onclick="showPage('checklist')">
+      <span class="nav-icon">✅</span> چک‌لیست اصلی
+    </div>
+
+    <div class="nav-section-label">کارگروه‌ها</div>
+    <div class="nav-item" onclick="showPage('wg1')">
+      <span class="nav-icon">📋</span> ۱- برنامه عملیاتی
+    </div>
+    <div class="nav-item" onclick="showPage('wg2')">
+      <span class="nav-icon">📝</span> ۲- ثبت‌نام دانش‌آموزان
+    </div>
+    <div class="nav-item" onclick="showPage('wg3')">
+      <span class="nav-icon">👥</span> ۳- ساماندهی نیروی انسانی
+    </div>
+    <div class="nav-item" onclick="showPage('wg4')">
+      <span class="nav-icon">🎓</span> ۴- توانمندسازی آموزشی
+    </div>
+    <div class="nav-item" onclick="showPage('wg5')">
+      <span class="nav-icon">🎭</span> ۵- فرهنگی-تربیتی
+    </div>
+    <div class="nav-item" onclick="showPage('wg6')">
+      <span class="nav-icon">🏗️</span> ۶- عمرانی، بهداشتی و ایمنی
+    </div>
+    <div class="nav-item" onclick="showPage('wg7')">
+      <span class="nav-icon">📚</span> ۷- انسداد مبادی بی‌سوادی
+    </div>
+
+    <div class="nav-section-label">فرم‌ها و اسناد</div>
+    <div class="nav-item" onclick="showPage('forms_announce')">
+      <span class="nav-icon">📜</span> ابلاغ عضویت
+    </div>
+    <div class="nav-item" onclick="showPage('forms_meeting')">
+      <span class="nav-icon">🗒️</span> صورتجلسه
+    </div>
+    <div class="nav-item" onclick="showPage('forms_student')">
+      <span class="nav-icon">🧒</span> فرم مشخصات دانش‌آموز
+    </div>
+    <div class="nav-item" onclick="showPage('forms_checkmatch')">
+      <span class="nav-icon">🔍</span> فرم تطبیق شناسنامه
+    </div>
+    <div class="nav-item" onclick="showPage('forms_cpm')">
+      <span class="nav-icon">📊</span> جدول CPM عمرانی
+    </div>
+    <div class="nav-item" onclick="showPage('members')">
+      <span class="nav-icon">🌟</span> اعضای پروژه مهر
+    </div>
+  </nav>
+</aside>
+
+<!-- ─── MAIN CONTENT ─── -->
+<main class="main-content">
+  <div class="topbar">
+    <div class="topbar-title" id="topbar-title">داشبورد پروژه مهر</div>
+    <div class="topbar-actions">
+      <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ چاپ</button>
+      <label class="btn btn-outline btn-sm gallery-upload-label">📂 بازیابی بکاپ<input type="file" accept="application/json,.json" style="display:none" onchange="restoreProject(this)"></label>
+      <button class="btn btn-gold btn-sm" onclick="downloadBackup()">💾 پشتیبان‌گیری</button>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- ═══════════════ DASHBOARD ═══════════════ -->
+    <div id="page-dashboard" class="page active">
+      <div class="dashboard-hero">
+        <div class="hero-content">
+          <div class="hero-badge">🌸 سال تحصیلی ۱۴۰۵-۱۴۰۶</div>
+          <div class="hero-title">خوش آمدید به<br><span>سامانه پروژه مهر</span></div>
+          <div class="hero-subtitle">پروژه مهر با هدف برنامه‌ریزی منسجم برای آغاز سال تحصیلی جدید اجرا می‌شود. این سامانه تمام فرم‌ها، چک‌لیست‌ها و کارگروه‌ها را یکجا مدیریت می‌کند.</div>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue">📋</div>
+          <div class="stat-value" id="stat-total-items">62</div>
+          <div class="stat-label">کل آیتم‌های چک‌لیست</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">✅</div>
+          <div class="stat-value" id="stat-done-items">0</div>
+          <div class="stat-label">آیتم‌های انجام‌شده</div>
+          <div class="stat-change" id="stat-pct">۰٪ پیشرفت</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon gold">📎</div>
+          <div class="stat-value" id="stat-members">0</div>
+          <div class="stat-label">کل مستندات بارگذاری‌شده</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red">📅</div>
+          <div class="stat-value">7</div>
+          <div class="stat-label">کارگروه فعال</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <div class="section-title">کارگروه‌های پروژه مهر</div>
+        <button class="btn btn-outline btn-sm" onclick="showPage('checklist')">مشاهده چک‌لیست کامل</button>
+      </div>
+
+      <div class="workgroups-grid">
+        <div class="wg-card wg-c1" onclick="showPage('wg1')">
+          <div class="wg-header">
+            <div class="wg-num">۱</div>
+            <div class="wg-info">
+              <h3>برنامه عملیاتی</h3>
+              <p>برنامه‌ریزی و سیاست‌گذاری</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg1-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg1-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">برنامه‌ریزی</span>
+            <span class="wg-tag">سیاست‌گذاری</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c2" onclick="showPage('wg2')">
+          <div class="wg-header">
+            <div class="wg-num">۲</div>
+            <div class="wg-info">
+              <h3>ثبت‌نام و ساماندهی دانش‌آموزان</h3>
+              <p>مدیریت پرونده و مدارک</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg2-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg2-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">ثبت‌نام</span>
+            <span class="wg-tag">پرونده‌سازی</span>
+            <span class="wg-tag">مدارک</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c3" onclick="showPage('wg3')">
+          <div class="wg-header">
+            <div class="wg-num">۳</div>
+            <div class="wg-info">
+              <h3>ساماندهی نیروی انسانی</h3>
+              <p>مدیریت کارکنان و معلمان</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg3-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg3-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">کارکنان</span>
+            <span class="wg-tag">معلمان</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c4" onclick="showPage('wg4')">
+          <div class="wg-header">
+            <div class="wg-num">۴</div>
+            <div class="wg-info">
+              <h3>توانمندسازی آموزشی</h3>
+              <p>کارگاه‌ها و دوره‌های آموزشی</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg4-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg4-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">کارگاه</span>
+            <span class="wg-tag">آموزش</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c5" onclick="showPage('wg5')">
+          <div class="wg-header">
+            <div class="wg-num">۵</div>
+            <div class="wg-info">
+              <h3>فرهنگی-تربیتی</h3>
+              <p>جشن‌ها و مراسم</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg5-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg5-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">جشن شکوفه‌ها</span>
+            <span class="wg-tag">بازگشایی</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c6" onclick="showPage('wg6')">
+          <div class="wg-header">
+            <div class="wg-num">۶</div>
+            <div class="wg-info">
+              <h3>عمرانی، بهداشتی و ایمنی</h3>
+              <p>آماده‌سازی فضاهای آموزشی</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg6-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg6-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">بهداشت</span>
+            <span class="wg-tag">ایمنی</span>
+            <span class="wg-tag">عمران</span>
+          </div>
+        </div>
+
+        <div class="wg-card wg-c7" onclick="showPage('wg7')">
+          <div class="wg-header">
+            <div class="wg-num">۷</div>
+            <div class="wg-info">
+              <h3>انسداد مبادی بی‌سوادی</h3>
+              <p>شناسایی و جذب دانش‌آموزان</p>
+            </div>
+          </div>
+          <div class="wg-progress">
+            <div class="progress-row"><span class="progress-label">پیشرفت</span><span class="progress-val wg7-pct">۰٪</span></div>
+            <div class="progress-bar"><div class="progress-fill wg7-bar" style="width:0%"></div></div>
+          </div>
+          <div class="wg-footer">
+            <span class="wg-tag">بازماندگان</span>
+            <span class="wg-tag">اتباع</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📜 سیاست‌های پروژه مهر</div>
+          </div>
+          <div class="card-body">
+            <div class="timeline">
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۱</div><div class="timeline-content">توسعه عدالت آموزشی</div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۲</div><div class="timeline-content">افزایش کیفیت آموزش</div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۳</div><div class="timeline-content">مشارکت اجتماع‌محور</div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۴</div><div class="timeline-content">توجه به سلامت و ایمنی</div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۵</div><div class="timeline-content">توسعه فرهنگ ایثار و مقاومت</div></div>
+              <div class="timeline-item"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۶</div><div class="timeline-content">جذب حداکثری دانش‌آموزان بازمانده از تحصیل</div></div>
+              <div class="timeline-item" style="padding-bottom:0"><div class="timeline-dot gold"></div><div class="timeline-time">سیاست ۷</div><div class="timeline-content">ساماندهی و به‌کارگیری بهینه منابع انسانی</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">📌 فرم‌های مشترک</div>
+            <button class="btn btn-sm btn-primary" onclick="showPage('forms_announce')">مشاهده فرم‌ها</button>
+          </div>
+          <div class="card-body">
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div class="member-card" onclick="showPage('forms_announce')" style="cursor:pointer">
+                <div class="member-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2563eb)">📜</div>
+                <div class="member-info"><h4>ابلاغ عضویت</h4><p>ابلاغ کارگروه پروژه مهر و ستاد ثبت‌نام</p></div>
+              </div>
+              <div class="member-card" onclick="showPage('forms_meeting')" style="cursor:pointer">
+                <div class="member-avatar" style="background:linear-gradient(135deg,#059669,#34d399)">🗒️</div>
+                <div class="member-info"><h4>صورتجلسه مدرسه</h4><p>فرم ثبت مذاکرات و مصوبات جلسه</p></div>
+              </div>
+              <div class="member-card" onclick="showPage('forms_student')" style="cursor:pointer">
+                <div class="member-avatar" style="background:linear-gradient(135deg,#d97706,#fbbf24)">🧒</div>
+                <div class="member-info"><h4>مشخصات دانش‌آموز</h4><p>فرم جامع اطلاعات دانش‌آموزان</p></div>
+              </div>
+              <div class="member-card" onclick="showPage('forms_checkmatch')" style="cursor:pointer">
+                <div class="member-avatar" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">🔍</div>
+                <div class="member-info"><h4>تطبیق با شناسنامه</h4><p>فرم تطبیق مشخصات با اصل شناسنامه</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ CHECKLIST ═══════════════ -->
+    <div id="page-checklist" class="page">
+      <div class="section-header">
+        <div class="section-title">چک‌لیست فعالیت‌های پروژه مهر</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span style="font-size:13px;color:var(--gray-500)">پیشرفت کلی: <strong id="cl-pct-display">۰٪</strong></span>
+          <button class="btn btn-primary btn-sm" onclick="printFullChecklist()">🖨️ چاپ کامل چک‌لیست</button>
+          <button class="btn btn-outline btn-sm" onclick="uncheckAll()">پاک‌سازی مستندات همه آیتم‌ها</button>
+        </div>
+      </div>
+
+      <div style="background:var(--white);border-radius:var(--radius);border:1px solid var(--gray-100);overflow:hidden;margin-bottom:20px;">
+        <div style="background:linear-gradient(90deg,var(--navy),var(--navy-light));padding:12px 20px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="color:white;font-weight:700;font-size:14px;">📋 کل چک‌لیست - اداره کل آموزش و پرورش استان البرز</span>
+          <span style="color:var(--gold-light);font-size:12px;">سال تحصیلی ۱۴۰۶-۱۴۰۵</span>
+        </div>
+        <div style="padding:0 20px 20px;" id="checklist-container">
+          <!-- JS will render checklist items -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG1 ═══════════════ -->
+    <div id="page-wg1" class="page">
+      <div class="section-header">
+        <div class="section-title">📋 برنامه عملیاتی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg1')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg1"></div>
+        <div class="wg-team-box" id="wg1-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG2 ═══════════════ -->
+    <div id="page-wg2" class="page">
+      <div class="section-header">
+        <div class="section-title">📝 ثبت‌نام دانش‌آموزان</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg2')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg2"></div>
+        <div class="wg-team-box" id="wg2-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG3 ═══════════════ -->
+    <div id="page-wg3" class="page">
+      <div class="section-header">
+        <div class="section-title">👥 ساماندهی نیروی انسانی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg3')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg3"></div>
+        <div class="wg-team-box" id="wg3-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG4 ═══════════════ -->
+    <div id="page-wg4" class="page">
+      <div class="section-header">
+        <div class="section-title">🎓 توانمندسازی آموزشی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg4')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg4"></div>
+        <div class="wg-team-box" id="wg4-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG5 ═══════════════ -->
+    <div id="page-wg5" class="page">
+      <div class="section-header">
+        <div class="section-title">🎉 فرهنگی-تربیتی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg5')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg5"></div>
+        <div class="wg-team-box" id="wg5-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG6 ═══════════════ -->
+    <div id="page-wg6" class="page">
+      <div class="section-header">
+        <div class="section-title">🏗️ عمرانی، بهداشتی و ایمنی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg6')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg6"></div>
+        <div class="wg-team-box" id="wg6-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ WG7 ═══════════════ -->
+    <div id="page-wg7" class="page">
+      <div class="section-header">
+        <div class="section-title">📚 انسداد مبادی بی‌سوادی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg7')">🖨️ چاپ</button>
+      </div>
+      <div class="wg-layout">
+        <div class="checklist-section" id="accordion-wg7"></div>
+        <div class="wg-team-box" id="wg7-team-box"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════ FORM: ANNOUNCE ═══════════════ -->
+    <div id="page-forms_announce" class="page">
+      <div class="section-header">
+        <div class="section-title">📄 ابلاغ عضویت</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('forms_announce')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-forms_announce"></div>
+    </div>
+
+    <!-- ═══════════════ FORM: MEETING ═══════════════ -->
+    <div id="page-forms_meeting" class="page">
+      <div class="section-header">
+        <div class="section-title">🗒️ صورتجلسه</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('forms_meeting')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-forms_meeting"></div>
+    </div>
+
+    <!-- ═══════════════ FORM: STUDENT ═══════════════ -->
+    <div id="page-forms_student" class="page">
+      <div class="section-header">
+        <div class="section-title">🧒 فرم مشخصات دانش‌آموز</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('forms_student')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-forms_student"></div>
+    </div>
+
+    <!-- ═══════════════ FORM: CHECK MATCH ═══════════════ -->
+    <div id="page-forms_checkmatch" class="page">
+      <div class="section-header">
+        <div class="section-title">🔍 فرم تطبیق شناسنامه</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('forms_checkmatch')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-forms_checkmatch"></div>
+    </div>
+
+    <!-- ═══════════════ FORM: CPM ═══════════════ -->
+    <div id="page-forms_cpm" class="page">
+      <div class="section-header">
+        <div class="section-title">🏗️ جدول CPM عمرانی</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('forms_cpm')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-forms_cpm"></div>
+    </div>
+
+    <!-- ═══════════════ MEMBERS ═══════════════ -->
+    <div id="page-members" class="page">
+      <div class="section-header">
+        <div class="section-title">🌟 اعضای پروژه مهر</div>
+        <button class="btn btn-outline btn-sm" onclick="printSectionAll('members')">🖨️ چاپ</button>
+      </div>
+      <div class="checklist-section" id="accordion-members"></div>
+    </div>
+
+  </div><!-- /page-body -->
+</main>
+</div><!-- /app-layout -->
+
+<!-- ═══════════════ MODALS ═══════════════ -->
+
+<!-- Add Student Modal -->
+<div class="modal-overlay" id="modal-add-student">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🧒 ثبت دانش‌آموز جدید</div>
+      <button class="modal-close" onclick="closeModal('modal-add-student')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label required">نام</label><input class="form-input" id="s-fname" placeholder="نام دانش‌آموز"></div>
+        <div class="form-group"><label class="form-label required">نام خانوادگی</label><input class="form-input" id="s-lname" placeholder="نام خانوادگی"></div>
+        <div class="form-group"><label class="form-label required">پایه تحصیلی</label><select class="form-select" id="s-grade"><option>پایه اول</option><option>پایه دوم</option><option>پایه سوم</option><option>پایه چهارم</option><option>پایه پنجم</option><option>پایه ششم</option></select></div>
+        <div class="form-group"><label class="form-label">کد ملی</label><input class="form-input" id="s-national" placeholder="کد ملی"></div>
+        <div class="form-group"><label class="form-label">نام پدر</label><input class="form-input" id="s-father" placeholder="نام پدر"></div>
+        <div class="form-group"><label class="form-label">تلفن تماس</label><input class="form-input" id="s-phone" placeholder="تلفن تماس"></div>
+        <div class="form-group form-full"><label class="form-label">وضعیت مدارک</label><select class="form-select" id="s-docs"><option>کامل</option><option>ناقص</option><option>در دست تکمیل</option></select></div>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-outline" onclick="closeModal('modal-add-student')">انصراف</button>
+        <button class="btn btn-primary" onclick="addStudent()">ثبت دانش‌آموز</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Member Modal -->
+<div class="modal-overlay" id="modal-add-member">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">🌟 افزودن عضو</div>
+      <button class="modal-close" onclick="closeModal('modal-add-member')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label required">نام و نام‌خانوادگی</label><input class="form-input" id="mem-name" placeholder="نام کامل"></div>
+        <div class="form-group"><label class="form-label required">سمت</label><input class="form-input" id="mem-role" placeholder="سمت در پروژه"></div>
+        <div class="form-group"><label class="form-label">نوع عضویت</label><select class="form-select" id="mem-type"><option>عضو پروژه مهر</option><option>عضو ستاد ثبت‌نام</option></select></div>
+        <div class="form-group form-full"><label class="form-label">شرح وظایف</label><textarea class="form-textarea" id="mem-duties" placeholder="شرح وظایف این عضو..."></textarea></div>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-outline" onclick="closeModal('modal-add-member')">انصراف</button>
+        <button class="btn btn-primary" onclick="addMember()">افزودن عضو</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add Staff Modal -->
+<div class="modal-overlay" id="modal-add-staff">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">👥 افزودن همکار</div>
+      <button class="modal-close" onclick="closeModal('modal-add-staff')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label required">نام و نام‌خانوادگی</label><input class="form-input" id="st-name" placeholder="نام کامل"></div>
+        <div class="form-group"><label class="form-label required">سمت</label><input class="form-input" id="st-role" placeholder="سمت"></div>
+        <div class="form-group"><label class="form-label">کد پرسنلی</label><input class="form-input" id="st-pid" placeholder="کد پرسنلی"></div>
+        <div class="form-group"><label class="form-label">کد ملی</label><input class="form-input" id="st-nid" placeholder="کد ملی"></div>
+        <div class="form-group"><label class="form-label">تلفن اضطراری</label><input class="form-input" id="st-phone" placeholder="تلفن"></div>
+        <div class="form-group"><label class="form-label">سابقه خدمت</label><input class="form-input" id="st-exp" placeholder="سال‌های خدمت"></div>
+        <div class="form-group"><label class="form-label">مدرک تحصیلی</label><input class="form-input" id="st-edu" placeholder="مدرک و رشته"></div>
+        <div class="form-group"><label class="form-label">پایه تدریس</label><input class="form-input" id="st-grade" placeholder="پایه"></div>
+        <div class="form-group"><label class="form-label">وضعیت استخدام</label><select class="form-select" id="st-hire"><option>رسمی</option><option>پیمانی</option><option>قراردادی</option><option>حق‌التدریس</option></select></div>
+        <div class="form-group"><label class="form-label">وضعیت ابلاغ</label><select class="form-select" id="st-duty"><option>موظف</option><option>غیرموظف</option></select></div>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-outline" onclick="closeModal('modal-add-staff')">انصراف</button>
+        <button class="btn btn-primary" onclick="addStaff()">افزودن همکار</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Need Student Modal -->
+<div class="modal-overlay" id="modal-need-student">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">📌 ثبت دانش‌آموز نیازمند تلاش بیشتر</div>
+      <button class="modal-close" onclick="closeModal('modal-need-student')">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-group"><label class="form-label required">نام دانش‌آموز</label><input class="form-input" id="ns-name" placeholder="نام و نام‌خانوادگی"></div>
+        <div class="form-group"><label class="form-label required">پایه/کلاس</label><input class="form-input" id="ns-grade" placeholder="مثلاً: پایه دوم، کلاس الف"></div>
+        <div class="form-group"><label class="form-label">نام آموزگار</label><input class="form-input" id="ns-teacher" placeholder="نام آموزگار"></div>
+        <div class="form-group form-full"><label class="form-label">دستور جلسه</label><textarea class="form-textarea" id="ns-agenda" placeholder="موضوع نیاز به تلاش بیشتر..."></textarea></div>
+      </div>
+      <div class="action-row">
+        <button class="btn btn-outline" onclick="closeModal('modal-need-student')">انصراف</button>
+        <button class="btn btn-primary" onclick="addNeedStudent()">ثبت</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATION -->
+<div class="notification" id="notification">
+  <span id="notification-icon">✅</span>
+  <span id="notification-text">عملیات موفق</span>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────
+let students = [
+  { id: 1001, name: 'امیرحسین رضایی', grade: 'پایه اول', national: '0270123456', father: 'محمد رضایی', phone: '09121234501', docs: 'کامل' },
+  { id: 1002, name: 'محمدطاها کریمی', grade: 'پایه اول', national: '0270123457', father: 'علی کریمی', phone: '09121234502', docs: 'کامل' },
+  { id: 1003, name: 'پارسا احمدی', grade: 'پایه دوم', national: '0270123458', father: 'حسین احمدی', phone: '09121234503', docs: 'کامل' },
+  { id: 1004, name: 'علی موسوی', grade: 'پایه سوم', national: '0270123459', father: 'رضا موسوی', phone: '09121234504', docs: 'در دست تکمیل' },
+  { id: 1005, name: 'کیان صادقی', grade: 'پایه چهارم', national: '0270123460', father: 'مهدی صادقی', phone: '09121234505', docs: 'کامل' },
+  { id: 1006, name: 'ماهان قاسمی', grade: 'پایه پنجم', national: '0270123461', father: 'ابراهیم قاسمی', phone: '09121234506', docs: 'کامل' },
+  { id: 1007, name: 'آرمین نوری', grade: 'پایه ششم', national: '0270123462', father: 'داود نوری', phone: '09121234507', docs: 'کامل' },
+];
+const WG_TEAM_IDS = ['wg1','wg2','wg3','wg4','wg5','wg6','wg7'];
+let wgTeam = {
+  wg1: { members: [], responsible: '', execTime: '' },
+  wg2: { members: [], responsible: '', execTime: '' },
+  wg3: { members: [], responsible: '', execTime: '' },
+  wg4: { members: [], responsible: '', execTime: '' },
+  wg5: { members: [], responsible: '', execTime: '' },
+  wg6: { members: [], responsible: '', execTime: '' },
+  wg7: { members: [], responsible: '', execTime: '' },
+};
+
+let members = [
+  { id: 2001, name: 'حیدری', role: 'مدیر مدرسه / رئیس ستاد پروژه مهر', duties: 'نظارت کلی بر اجرای پروژه مهر، هماهنگی میان کارگروه‌ها، تصویب برنامه عملیاتی و پیگیری روند کار تا آخر شهریورماه' },
+  { id: 2002, name: 'رحیمی', role: 'معاون اجرایی / دبیر ستاد پروژه مهر', duties: 'پیگیری مصوبات جلسات، تنظیم صورتجلسات، هماهنگی زمان‌بندی کارگروه‌ها' },
+  { id: 2003, name: 'اکبری', role: 'معاون آموزشی', duties: 'برنامه‌ریزی کلاس‌بندی، هماهنگی شورای معلمین و بررسی برنامه درسی' },
+  { id: 2004, name: 'جعفری', role: 'نماینده معلمین', duties: 'انتقال نظرات همکاران به ستاد و پیگیری آماده‌سازی کلاس‌ها' },
+  { id: 2005, name: 'محمدی', role: 'مسئول امور مالی و اداری', duties: 'پیگیری بودجه پروژه مهر، ثبت هزینه‌های عمرانی و تدارکاتی' },
+  { id: 2006, name: 'حسینی', role: 'مسئول بهداشت مدرسه', duties: 'نظارت بر ضدعفونی، سلامت محیط و تهیه جعبه کمک‌های اولیه' },
+  { id: 2007, name: 'کاظمی', role: 'نماینده انجمن اولیاء و مربیان', duties: 'هماهنگی با اولیاء، برگزاری جلسات شهریور و جمع‌آوری کمک‌های مردمی' },
+];
+let regMembers = [
+  { id: 3001, name: 'رحیمی', role: 'مسئول ستاد ثبت‌نام', duties: 'نظارت کلی بر روند ثبت‌نام، تأیید نهایی مدارک و کلاس‌بندی' },
+  { id: 3002, name: 'صادقیان', role: 'مسئول ثبت‌نام پایه اول', duties: 'دریافت و بررسی مدارک ثبت‌نام‌کنندگان پایه اول' },
+  { id: 3003, name: 'یوسفی', role: 'مسئول ثبت‌نام میان‌پایه', duties: 'پیگیری ثبت‌نام و پرونده دانش‌آموزان میان‌پایه' },
+  { id: 3004, name: 'قنبری', role: 'مسئول رایانه و سامانه سیدا', duties: 'ثبت اطلاعات در سامانه سیدا و به‌روزرسانی کلاس‌بندی' },
+];
+let staffList = [
+  { id: 4001, name: 'اکبری', role: 'معاون آموزشی', pid: '10245', nid: '0270111111', phone: '09121110001', exp: '۱۴ سال', edu: 'کارشناسی علوم تربیتی', grade: '-', hire: 'رسمی', duty: 'موظف' },
+  { id: 4002, name: 'جعفری', role: 'آموزگار پایه اول', pid: '10246', nid: '0270111112', phone: '09121110002', exp: '۹ سال', edu: 'کارشناسی آموزش ابتدایی', grade: 'پایه اول', hire: 'رسمی', duty: 'موظف' },
+  { id: 4003, name: 'نجفی', role: 'آموزگار پایه دوم', pid: '10247', nid: '0270111113', phone: '09121110003', exp: '۶ سال', edu: 'کارشناسی آموزش ابتدایی', grade: 'پایه دوم', hire: 'پیمانی', duty: 'موظف' },
+  { id: 4004, name: 'رستمی', role: 'آموزگار پایه سوم', pid: '10248', nid: '0270111114', phone: '09121110004', exp: '۱۱ سال', edu: 'کارشناسی آموزش ابتدایی', grade: 'پایه سوم', hire: 'رسمی', duty: 'موظف' },
+  { id: 4005, name: 'شریفی', role: 'آموزگار پایه چهارم', pid: '10249', nid: '0270111115', phone: '09121110005', exp: '۸ سال', edu: 'کارشناسی ارشد علوم تربیتی', grade: 'پایه چهارم', hire: 'رسمی', duty: 'موظف' },
+  { id: 4006, name: 'موسوی', role: 'آموزگار پایه پنجم', pid: '10250', nid: '0270111116', phone: '09121110006', exp: '۵ سال', edu: 'کارشناسی آموزش ابتدایی', grade: 'پایه پنجم', hire: 'قراردادی', duty: 'موظف' },
+  { id: 4007, name: 'کریمی', role: 'آموزگار پایه ششم', pid: '10251', nid: '0270111117', phone: '09121110007', exp: '۱۳ سال', edu: 'کارشناسی آموزش ابتدایی', grade: 'پایه ششم', hire: 'رسمی', duty: 'موظف' },
+  { id: 4008, name: 'حسینی', role: 'مربی بهداشت', pid: '10252', nid: '0270111118', phone: '09121110008', exp: '۴ سال', edu: 'کاردانی بهداشت', grade: '-', hire: 'حق‌التدریس', duty: 'غیرموظف' },
+  { id: 4009, name: 'قاسمی', role: 'نیروی خدماتی', pid: '10253', nid: '0270111119', phone: '09121110009', exp: '۷ سال', edu: 'دیپلم', grade: '-', hire: 'قراردادی', duty: 'موظف' },
+];
+let needStudents = [];
+
+// ─────────────────────────────────────────────
+// CHECKLIST DATA
+// ─────────────────────────────────────────────
+const checklistData = [
+  { section: '📋 ستاد و برنامه‌ریزی', items: [
+    'ابلاغ داخلی برای اعضای ستاد پروژه مهر زده شده و همکاران ساماندهی شده‌اند',
+    'گزارش پروژه مهر مدرسه به صورت پاورپوینت در حال تکمیل است',
+    'برنامه‌ریزی برای اجرای مانور پروژه مهر در نیمه دوم شهریور ماه',
+    'جلسات طبق زمان‌بندی تشکیل و صورتجلسات نوشته شده‌اند (شورای مدرسه، معاونین، معلمین)',
+    'برنامه عملیاتی تنظیم شده است',
+    'تفویض اختیار و تقسیم کار برای کادر اداری انجام شده است',
+  ]},
+  { section: '📝 ثبت‌نام و پرونده‌سازی', items: [
+    'ثبت‌نام دانش‌آموزان پایه اول و ورودی‌های جدید میان‌پایه انجام شده است',
+    'کارگروه بررسی پرونده دانش‌آموزان تشکیل شده و پرونده‌ها در زونکن قرار دارد',
+    'جلد زونکن‌ها تعویض و چک‌لیست مدارک تکمیل شده است',
+    'نواقص پرونده‌های پایه اول تکمیل شده است',
+    'پلمپ و بسته شدن دفاتر امتحانات، آمار و... انجام شده است',
+    'ثبت‌نام کتب میان‌پایه انجام شده و لیست دانش‌آموزان آماده است',
+    'ثبت‌نام کتب کلاس اول انجام شده و لیست دانش‌آموزان آماده است',
+  ]},
+  { section: '👥 نیروی انسانی', items: [
+    'کلیه پرونده‌های همکاران بررسی و تکمیل شده است',
+    'کلاس‌بندی پایه‌ها در سامانه سیدا انجام شده است',
+    'فرم‌های ارزیابی سال گذشته تکمیل و در سه نسخه چاپ شده است',
+    'پرونده ارزیابی سال تحصیلی جدید همکاران آماده شده است',
+    'دفترچه مشخصات دانش‌آموزان به تفکیک پایه‌ها آماده شده است',
+    'نمودار درصد قبولی مربوط به نوبت دوم سال گذشته تهیه و در تابلو نصب شده است',
+    'تنظیم فرم ساماندهی برای سال تحصیلی جدید انجام شده است',
+    'نامه شروع به کار همکاران صادر و ارسال شده است',
+  ]},
+  { section: '💻 سامانه و اداری', items: [
+    'تمهیدات لازم برای بازدید اولیاء از سامانه انجام شده است',
+    'ثبت‌نام الکترونیکی در سامانه سیدا به طور کامل انجام شده و کلاس‌بندی‌ها به‌روز است',
+    'کلیه دفاتر آموزشگاه (حضور و غیاب، مالی، شورای معلمان، اموال و...) تهیه و پلمپ شده است',
+    'کلاس‌بندی کلیه پایه‌ها آماده شده و لیست آن در اختیار معاون اجرایی قرار داده شده است',
+  ]},
+  { section: '🎓 آموزشی و کلاس‌درس', items: [
+    'برنامه‌ریزی برای شورای معلمین انجام شده است',
+    'کلیه ملزومات لازم برای شورای معلمان آماده است',
+    'نماینده معلمان انتخاب شده است',
+    'کلیه برنامه‌های کلاسی توسط همکاران تنظیم و بررسی شده‌اند',
+    'برنامه نماز دانش‌آموزان تنظیم شده است',
+    'برنامه‌های کلاسی پایه‌ها در تابلو اعلانات نصب شده‌اند',
+    'برنامه تقلیل همکاران بالای بیست سال تنظیم شده است',
+    'کتاب‌های درسی آماده توزیع در روز اول مهر می‌باشد',
+  ]},
+  { section: '👨‍👩‍👧 اولیاء و جامعه', items: [
+    'برنامه‌ریزی برای جلسات شهریور اولیاء انجام گرفته است',
+    'جدول جلسات تابستان تنظیم و در اختیار اولیاء قرار داده شده است',
+    'کلیه ملزومات لازم برای جلسه اولیاء آماده است',
+    'چارت سازمانی چاپ و در مکانی مناسب نصب شده است',
+    'برنامه‌ریزی برای جشن کلاس اول انجام شده است',
+  ]},
+  { section: '🎭 فرهنگی و تربیتی', items: [
+    'برنامه‌ریزی برای جشن شکوفه‌ها با حضور نماینده کلاس‌های اول انجام شده است',
+    'برنامه‌ریزی برای کارگاه‌های آموزشی پایه اول انجام شده است',
+    'برنامه‌ریزی برای جشن غنچه‌ها با حضور نماینده کلاس‌های پیش‌دبستان انجام شده است',
+    'برنامه‌ریزی برای جشن بازگشایی در شورای مدرسه انجام شده است',
+    'روزشمار بازگشایی تهیه شده است',
+    'پرچم جمهوری اسلامی نصب شده و بنرهای مربوطه تهیه شده است',
+    'تمهیدات لازم برای پذیرایی، فیلم‌برداری و عکاسی انجام شده است',
+  ]},
+  { section: '🏗️ عمرانی، بهداشتی و ایمنی', items: [
+    'اموال هر اتاق به تاریخ سال تحصیلی جدید به‌روزرسانی شده است',
+    'تفویض اختیار برای نیروهای خدماتی انجام شده است',
+    'کف و دیوار کلیه کلاس‌ها نظافت شده است',
+    'مکان‌های عمومی مدرسه کنترل و مرتب شده است',
+    'شاداب‌سازی و زیباسازی حیاط دبستان انجام شده است',
+    'سیستم‌های سرمایشی و گرمایشی چک و تعمیر شده است',
+    'کپسول‌های آتش‌نشانی شارژ شده است',
+    'جعبه کمک‌های اولیه تهیه شده است',
+    'سرویس‌های بهداشتی و آبخوری ضدعفونی شده است',
+    'پرده کلاس‌ها شسته و میله‌های خراب تعویض شده است',
+    'سیستم‌های هوشمند سالم و آماده به کار هستند',
+    'سیستم صوتی بررسی شده و زنگ با صدای مناسب تنظیم شده است',
+    'درب ورودی حیاط و سالن رنگ‌آمیزی شده است',
+    'کلیه ملزومات بهداشتی تهیه و سطل‌های زباله درب‌دار قرار داده شده است',
+    'فضای نمازخانه بررسی و برای نماز جماعت آماده است',
+    'پوشاک و لوازم‌التحریر برای دانش‌آموزان بی‌بضاعت تهیه شده است',
+  ]},
+  { section: '📚 انسداد بی‌سوادی', items: [
+    'تمهیدات لازم برای خدمات سواد‌آموزی و جذب اولیاء بی‌سواد اندیشیده شده است',
+    'میز پاسخگویی جهت جلوگیری از سرگردانی اولیاء قرار داده شده است',
+    'صندوق‌های مکاتبه با مدیر و انتقادات و پیشنهادات نصب شده است',
+  ]},
+];
+
+function isPdfFile(file) {
+  // بعضی مرورگرها/سیستم‌عامل‌ها MIME type فایل PDF را درست گزارش نمی‌کنند؛
+  // برای اطمینان، پسوند فایل را هم بررسی می‌کنیم
+  return file.type === 'application/pdf' || /\.pdf$/i.test(file.name || '');
+}
+
+function dataURLToBlobURL(dataURL) {
+  // مرورگرهای جدید ناوبری مستقیم به data: URL را مسدود می‌کنند؛
+  // برای باز کردن PDF در تب جدید باید آن را به Blob URL تبدیل کرد
+  try {
+    const [header, base64] = dataURL.split(',');
+    const mimeMatch = header.match(/data:(.*?);base64/);
+    const mime = mimeMatch ? mimeMatch[1] : 'application/pdf';
+    const binary = atob(base64);
+    const arr = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) arr[i] = binary.charCodeAt(i);
+    return URL.createObjectURL(new Blob([arr], { type: mime }));
+  } catch (e) {
+    console.error('خطا در تبدیل فایل:', e);
+    return dataURL;
+  }
+}
+
+let checklistDocs = {}; // key `${si}-${ii}` -> [{type:'image'|'pdf', name, data}]
+let checklistStatus = {}; // key -> 'notstarted' | 'progress' | 'done'
+let checklistResp = {}; // key -> نام مسئول اجرا
+const DOC_MAX = 10;
+const STATUS_LABELS = { notstarted: 'انجام نشده', progress: 'در دست اقدام', done: 'انجام شده' };
+
+function renderChecklist() {
+  const container = document.getElementById('checklist-container');
+  let html = '';
+  checklistData.forEach((sec, si) => {
+    html += `<div class="checklist-section">
+      <div class="checklist-section-title">${sec.section}</div>`;
+    sec.items.forEach((item, ii) => {
+      const key = `${si}-${ii}`;
+      const docs = checklistDocs[key] || [];
+      const status = checklistStatus[key] || 'notstarted';
+      const resp = checklistResp[key] || '';
+      const icon = status === 'done' ? '✓' : status === 'progress' ? '…' : '✕';
+      html += `
+      <div class="checklist-item-wrapper">
+        <div class="checklist-item status-${status}" id="ci-${key}" onclick="toggleChecklistExpand('${key}')">
+          <div class="check-box">${icon}</div>
+          <div class="check-text">${item}</div>
+          <input type="text" class="checklist-resp-input" placeholder="مسئول اجرا" value="${resp.replace(/"/g,'&quot;')}" onclick="event.stopPropagation()" onchange="updateChecklistResp('${key}', this.value)">
+          <select class="checklist-status-select" onclick="event.stopPropagation()" onchange="updateChecklistStatus('${key}', this.value)">
+            <option value="notstarted"${status==='notstarted'?' selected':''}>انجام نشده</option>
+            <option value="progress"${status==='progress'?' selected':''}>در دست اقدام</option>
+            <option value="done"${status==='done'?' selected':''}>انجام شده</option>
+          </select>
+          <div class="doc-count-badge">${docs.length ? docs.length + ' مستند' : 'بدون مستند'}</div>
+          <div class="expand-arrow">▾</div>
+        </div>
+        <div class="checklist-expand" id="expand-${key}">
+          <div class="doc-upload-row">
+            <label class="btn btn-outline btn-sm gallery-upload-label" onclick="event.stopPropagation()">📤 بارگذاری عکس یا PDF<input type="file" accept="image/*,application/pdf" multiple style="display:none" onchange="handleChecklistDocUpload('${key}', this)"></label>
+            <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); printChecklistDocs('${key}')">🖨️ چاپ / PDF</button>
+          </div>
+          <div class="doc-grid" id="doc-grid-${key}"></div>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  container.innerHTML = html;
+  checklistData.forEach((sec, si) => { sec.items.forEach((_, ii) => renderChecklistDocs(`${si}-${ii}`)); });
+  updateCheckStats();
+}
+
+function updateChecklistResp(key, value) {
+  checklistResp[key] = (value || '').trim();
+  scheduleAutoSave();
+}
+
+function updateChecklistStatus(key, value) {
+  checklistStatus[key] = value;
+  updateChecklistItemStatus(key);
+  updateCheckStats();
+  scheduleAutoSave();
+}
+
+function toggleChecklistExpand(key) {
+  const panel = document.getElementById('expand-' + key);
+  const header = document.getElementById('ci-' + key);
+  if (!panel || !header) return;
+  panel.classList.toggle('open');
+  header.classList.toggle('expanded');
+}
+
+function handleChecklistDocUpload(key, input) {
+  const files = Array.from(input.files || []);
+  if (!files.length) return;
+  const current = checklistDocs[key] || (checklistDocs[key] = []);
+  const remaining = DOC_MAX - current.length;
+  if (remaining <= 0) {
+    showNotification('حداکثر ۱۰ مستند برای هر آیتم مجاز است', 'error');
+    input.value = '';
+    return;
+  }
+  const toAdd = files.slice(0, remaining);
+  if (files.length > remaining) {
+    showNotification(`فقط ${remaining} مورد اضافه شد (سقف ۱۰ مستند برای هر آیتم)`, 'error');
+  }
+  let loaded = 0;
+  toAdd.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      current.push({ type: isPdfFile(file) ? 'pdf' : 'image', name: file.name, data: e.target.result });
+      loaded++;
+      if (loaded === toAdd.length) {
+        renderChecklistDocs(key);
+        updateChecklistItemStatus(key);
+        updateCheckStats();
+        updateTotalDocsStat();
+        scheduleAutoSave();
+        showNotification('مستند با موفقیت بارگذاری شد ✓', 'success');
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+
+function renderChecklistDocs(key) {
+  const grid = document.getElementById('doc-grid-' + key);
+  if (!grid) return;
+  const docs = checklistDocs[key] || [];
+  grid.innerHTML = docs.length ? docs.map((d, i) => {
+    if (d.type === 'pdf') {
+      return `<div class="doc-item doc-pdf" onclick="viewChecklistDoc('${key}', ${i})">
+        <div class="doc-pdf-icon">📄</div>
+        <div class="doc-pdf-name">${d.name || 'PDF'}</div>
+        <button class="gallery-del no-print" onclick="event.stopPropagation(); deleteChecklistDoc('${key}', ${i})">✕</button>
+      </div>`;
+    }
+    return `<div class="doc-item" onclick="viewChecklistDoc('${key}', ${i})">
+      <img src="${d.data}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'doc-pdf-icon',textContent:'📎'}))">
+      <button class="gallery-del no-print" onclick="event.stopPropagation(); deleteChecklistDoc('${key}', ${i})">✕</button>
+    </div>`;
+  }).join('') : '<div class="gallery-empty">هنوز مستندی بارگذاری نشده است</div>';
+}
+
+function updateChecklistItemStatus(key) {
+  const header = document.getElementById('ci-' + key);
+  if (!header) return;
+  const status = checklistStatus[key] || 'notstarted';
+  header.classList.remove('status-notstarted', 'status-progress', 'status-done');
+  header.classList.add('status-' + status);
+  const box = header.querySelector('.check-box');
+  if (box) box.textContent = status === 'done' ? '✓' : status === 'progress' ? '…' : '✕';
+  const docs = checklistDocs[key] || [];
+  const badge = header.querySelector('.doc-count-badge');
+  if (badge) badge.textContent = docs.length ? docs.length + ' مستند' : 'بدون مستند';
+}
+
+function deleteChecklistDoc(key, i) {
+  if (!checklistDocs[key]) return;
+  checklistDocs[key].splice(i, 1);
+  renderChecklistDocs(key);
+  updateChecklistItemStatus(key);
+  updateCheckStats();
+  updateTotalDocsStat();
+  scheduleAutoSave();
+  showNotification('مستند حذف شد');
+}
+
+function viewChecklistDoc(key, i) {
+  const doc = (checklistDocs[key] || [])[i];
+  if (!doc) return;
+  if (doc.type === 'pdf') {
+    window.open(dataURLToBlobURL(doc.data), '_blank');
+    return;
+  }
+  const w = window.open('', '_blank');
+  w.document.write(`<title>مشاهده مستند</title><body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="${doc.data}" style="max-width:100%;max-height:100vh;"></body>`);
+  w.document.close();
+}
+
+function printFullChecklist() {
+  const EMPTY_PLACEHOLDERS = 6; // تعداد جای خالی عکس برای آیتم‌های بدون مستند
+  let pagesHtml = '';
+  checklistData.forEach((sec, si) => {
+    sec.items.forEach((item, ii) => {
+      const key = `${si}-${ii}`;
+      const docs = checklistDocs[key] || [];
+      const status = checklistStatus[key] || 'notstarted';
+      const resp = checklistResp[key] || '';
+      const statusLabel = STATUS_LABELS[status];
+      let cols, rows, cellsHtml;
+      if (docs.length) {
+        const n = docs.length;
+        cols = Math.ceil(Math.sqrt(n));
+        rows = Math.ceil(n / cols);
+        cellsHtml = docs.map(d => {
+          const inner = d.type === 'pdf'
+            ? `<embed src="${d.data}" type="application/pdf">`
+            : `<img src="${d.data}">`;
+          return `<div class="cell">${inner}<div class="cap">${d.name || ''}</div></div>`;
+        }).join('');
+      } else {
+        const n = EMPTY_PLACEHOLDERS;
+        cols = Math.ceil(Math.sqrt(n));
+        rows = Math.ceil(n / cols);
+        cellsHtml = Array.from({ length: n }).map(() =>
+          `<div class="cell placeholder"><div class="ph-box">📷</div></div>`
+        ).join('');
+      }
+      pagesHtml += `
+        <section class="ppage">
+          <h2>${sec.section} — ${item}</h2>
+          <div class="meta">وضعیت: <strong>${statusLabel}</strong>${resp ? ' &nbsp;•&nbsp; مسئول اجرا: ' + resp : ''}</div>
+          <div class="grid" style="grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr);">${cellsHtml}</div>
+        </section>`;
+    });
+  });
+  const w = window.open('', '_blank');
+  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>چاپ کامل چک‌لیست</title>
+    <style>
+      @page { size: A4; margin: 10mm; }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
+      .ppage { height: 277mm; display: flex; flex-direction: column; page-break-after: always; }
+      .ppage:last-child { page-break-after: auto; }
+      h2 { font-size: 14px; margin: 0 0 4px; border-bottom: 2px solid #c9a227; padding-bottom: 6px; flex-shrink: 0; }
+      .meta { font-size: 11px; color: #666; margin-bottom: 10px; flex-shrink: 0; }
+      .grid { flex: 1; min-height: 0; display: grid; gap: 8mm; }
+      .cell { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+      .cell img, .cell embed { max-width: 100%; max-height: calc(100% - 16px); width: auto; height: auto; border: 1px solid #ccc; border-radius: 6px; }
+      .cap { font-size: 9px; color: #666; margin-top: 4px; text-align: center; flex-shrink: 0; }
+      .cell.placeholder { width: 100%; height: 100%; }
+      .ph-box {
+        width: 100%; height: 100%; border: 2px dashed #bbb; border-radius: 8px;
+        display: flex; align-items: center; justify-content: center; font-size: 28px; color: #ccc;
+        background: #fafafa;
+      }
+    </style></head>
+    <body onload="setTimeout(function(){window.print();}, 600)">${pagesHtml}</body></html>`;
+  w.document.write(html);
+  w.document.close();
+}
+
+function printChecklistDocs(key) {
+  const [si, ii] = key.split('-').map(Number);
+  const title = (checklistData[si] && checklistData[si].items[ii]) || 'مستندات آیتم';
+  const docs = checklistDocs[key] || [];
+  if (!docs.length) { showNotification('مستندی برای چاپ در این آیتم وجود ندارد', 'error'); return; }
+  const n = docs.length;
+  const cols = Math.ceil(Math.sqrt(n));
+  const rows = Math.ceil(n / cols);
+  const cells = docs.map(d => {
+    const inner = d.type === 'pdf'
+      ? `<embed src="${d.data}" type="application/pdf">`
+      : `<img src="${d.data}">`;
+    return `<div class="cell">${inner}<div class="cap">${d.name || ''}</div></div>`;
+  }).join('');
+  const w = window.open('', '_blank');
+  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${title}</title>
+    <style>
+      @page { size: A4; margin: 10mm; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
+      .page { display: flex; flex-direction: column; height: 100%; }
+      h2 { font-size: 15px; margin: 0 0 10px; border-bottom: 2px solid #c9a227; padding-bottom: 8px; flex-shrink: 0; }
+      .grid {
+        flex: 1; min-height: 0;
+        display: grid;
+        grid-template-columns: repeat(${cols}, 1fr);
+        grid-template-rows: repeat(${rows}, 1fr);
+        gap: 8mm;
+      }
+      .cell { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+      .cell img, .cell embed { max-width: 100%; max-height: calc(100% - 16px); width: auto; height: auto; border: 1px solid #ccc; border-radius: 6px; }
+      .cap { font-size: 10px; color: #666; margin-top: 4px; text-align: center; flex-shrink: 0; }
+    </style></head>
+    <body onload="setTimeout(function(){window.print();}, 400)">
+      <div class="page"><h2>${title}</h2><div class="grid">${cells}</div></div>
+    </body></html>`;
+  w.document.write(html);
+  w.document.close();
+}
+
+function updateCheckStats() {
+  let total = 0, done = 0;
+  checklistData.forEach((sec, si) => {
+    sec.items.forEach((_, ii) => {
+      total++;
+      if ((checklistStatus[`${si}-${ii}`] || 'notstarted') === 'done') done++;
+    });
+  });
+  const pct = total > 0 ? Math.round(done/total*100) : 0;
+  document.getElementById('stat-total-items').textContent = total;
+  document.getElementById('stat-done-items').textContent = done;
+  document.getElementById('stat-pct').textContent = pct + '٪ پیشرفت';
+  const el = document.getElementById('cl-pct-display');
+  if (el) el.textContent = pct + '٪';
+}
+
+function uncheckAll() {
+  if (!confirm('همه مستندات بارگذاری‌شده در چک‌لیست پاک شود؟')) return;
+  checklistDocs = {};
+  renderChecklist();
+  scheduleAutoSave();
+}
+
+// ─────────────────────────────────────────────
+// NAVIGATION
+// ─────────────────────────────────────────────
+const pageTitles = {
+  dashboard: 'داشبورد پروژه مهر',
+  checklist: 'چک‌لیست فعالیت‌های پروژه مهر',
+  wg1: 'کارگروه ۱ - برنامه عملیاتی',
+  wg2: 'کارگروه ۲ - ثبت‌نام و ساماندهی دانش‌آموزان',
+  wg3: 'کارگروه ۳ - ساماندهی نیروی انسانی',
+  wg4: 'کارگروه ۴ - توانمندسازی آموزشی',
+  wg5: 'کارگروه ۵ - فرهنگی-تربیتی',
+  wg6: 'کارگروه ۶ - عمرانی، بهداشتی و ایمنی',
+  wg7: 'کارگروه ۷ - انسداد مبادی بی‌سوادی',
+  forms_announce: 'فرم ابلاغ عضویت',
+  forms_meeting: 'فرم صورتجلسه مدرسه',
+  forms_student: 'فرم مشخصات دانش‌آموز',
+  forms_checkmatch: 'فرم تطبیق شناسنامه',
+  forms_cpm: 'جدول CPM عمرانی',
+  members: 'اعضای پروژه مهر',
+};
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const page = document.getElementById('page-' + id);
+  if (page) page.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
+      n.classList.add('active');
+    }
+  });
+  document.getElementById('topbar-title').textContent = pageTitles[id] || 'پروژه مهر';
+  window.scrollTo(0,0);
+}
+
+// ─────────────────────────────────────────────
+// TABS
+// ─────────────────────────────────────────────
+function switchTab(btn, panelId) {
+  const tabs = btn.parentElement;
+  tabs.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const panels = btn.closest('.page') || document;
+  panels.querySelectorAll('.tab-panel').forEach(p => {
+    if (p.id === panelId) p.classList.add('active');
+    else p.classList.remove('active');
+  });
+}
+
+// ─────────────────────────────────────────────
+// MODALS
+// ─────────────────────────────────────────────
+function openModal(id) {
+  document.getElementById(id).classList.add('open');
+}
+
+function closeModal(id) {
+  document.getElementById(id).classList.remove('open');
+}
+
+document.querySelectorAll('.modal-overlay').forEach(m => {
+  m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+});
+
+// ─────────────────────────────────────────────
+// NOTIFICATION
+// ─────────────────────────────────────────────
+let notifTimeout;
+function showNotification(msg, type = 'success') {
+  const el = document.getElementById('notification');
+  const icon = document.getElementById('notification-icon');
+  const text = document.getElementById('notification-text');
+  icon.textContent = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+  text.textContent = msg;
+  el.className = 'notification ' + type + ' show';
+  clearTimeout(notifTimeout);
+  notifTimeout = setTimeout(() => el.classList.remove('show'), 3000);
+}
+
+// ─────────────────────────────────────────────
+// STUDENTS
+// ─────────────────────────────────────────────
+function addStudent() {
+  const name = document.getElementById('s-fname').value.trim();
+  const lname = document.getElementById('s-lname').value.trim();
+  if (!name || !lname) { showNotification('لطفاً نام و نام‌خانوادگی را وارد کنید', 'error'); return; }
+  const s = {
+    id: Date.now(),
+    name: name + ' ' + lname,
+    grade: document.getElementById('s-grade').value,
+    national: document.getElementById('s-national').value,
+    father: document.getElementById('s-father').value,
+    phone: document.getElementById('s-phone').value,
+    docs: document.getElementById('s-docs').value,
+  };
+  students.push(s);
+  renderStudents();
+  closeModal('modal-add-student');
+  ['s-fname','s-lname','s-national','s-father','s-phone'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('stat-members').textContent = students.length;
+  showNotification('دانش‌آموز با موفقیت ثبت شد ✓', 'success');
+}
+
+function renderStudents(filter = '') {
+  const tbody = document.getElementById('students-table');
+  if (!tbody) return;
+  const filtered = filter ? students.filter(s => s.name.includes(filter) || s.grade.includes(filter)) : students;
+  if (!filtered.length) {
+    tbody.innerHTML = '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--gray-400);">هنوز دانش‌آموزی ثبت‌نام نشده است</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map((s, i) => `
+    <tr>
+      <td>${i+1}</td>
+      <td class="td-name">${s.name}</td>
+      <td>${s.grade}</td>
+      <td>${s.national || '-'}</td>
+      <td>${s.father || '-'}</td>
+      <td>${s.phone || '-'}</td>
+      <td><span class="status-badge ${s.docs==='کامل'?'status-done':s.docs==='ناقص'?'status-pending':'status-review'}">${s.docs}</span></td>
+      <td><button class="btn btn-danger btn-sm" onclick="delStudent(${s.id})">حذف</button></td>
+    </tr>
+  `).join('');
+}
+
+function delStudent(id) {
+  students = students.filter(s => s.id !== id);
+  renderStudents();
+  document.getElementById('stat-members').textContent = students.length;
+  showNotification('دانش‌آموز حذف شد', 'error');
+}
+
+function filterStudents(val) { renderStudents(val); }
+
+// ─────────────────────────────────────────────
+// MEMBERS
+// ─────────────────────────────────────────────
+function addMember() {
+  const name = document.getElementById('mem-name').value.trim();
+  if (!name) { showNotification('نام عضو را وارد کنید', 'error'); return; }
+  const m = {
+    id: Date.now(),
+    name, role: document.getElementById('mem-role').value,
+    type: document.getElementById('mem-type').value,
+    duties: document.getElementById('mem-duties').value,
+  };
+  if (m.type === 'عضو پروژه مهر') members.push(m);
+  else regMembers.push(m);
+  renderMembers();
+  closeModal('modal-add-member');
+  ['mem-name','mem-role','mem-duties'].forEach(id => document.getElementById(id).value = '');
+  showNotification('عضو با موفقیت افزوده شد ✓', 'success');
+}
+
+function renderMembers() {
+  const render = (arr, tbodyId) => {
+    const tbody = document.getElementById(tbodyId);
+    if (!tbody) return;
+    if (!arr.length) { tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;padding:40px;color:var(--gray-400);">هنوز عضوی ثبت نشده</td></tr>'; return; }
+    tbody.innerHTML = arr.map((m, i) => `<tr><td>${i+1}</td><td class="td-name">${m.name}</td><td>${m.role||'-'}</td><td>${m.duties||'-'}</td><td><button class="btn btn-danger btn-sm" onclick="delMember(${m.id},'${tbodyId}')">حذف</button></td></tr>`).join('');
+  };
+  render(members, 'members-table');
+  render(regMembers, 'reg-members-table');
+}
+
+function delMember(id, tbodyId) {
+  if (tbodyId === 'members-table') members = members.filter(m => m.id !== id);
+  else regMembers = regMembers.filter(m => m.id !== id);
+  renderMembers();
+  showNotification('عضو حذف شد');
+}
+
+// ─────────────────────────────────────────────
+// STAFF
+// ─────────────────────────────────────────────
+function addStaffRow() { openModal('modal-add-staff'); }
+
+function addStaff() {
+  const name = document.getElementById('st-name').value.trim();
+  if (!name) { showNotification('نام همکار را وارد کنید', 'error'); return; }
+  const s = {
+    id: Date.now(),
+    name, role: document.getElementById('st-role').value,
+    pid: document.getElementById('st-pid').value,
+    nid: document.getElementById('st-nid').value,
+    phone: document.getElementById('st-phone').value,
+    exp: document.getElementById('st-exp').value,
+    edu: document.getElementById('st-edu').value,
+    grade: document.getElementById('st-grade').value,
+    hire: document.getElementById('st-hire').value,
+    duty: document.getElementById('st-duty').value,
+  };
+  staffList.push(s);
+  renderStaff();
+  closeModal('modal-add-staff');
+  ['st-name','st-role','st-pid','st-nid','st-phone','st-exp','st-edu','st-grade'].forEach(id => document.getElementById(id).value = '');
+  showNotification('همکار با موفقیت افزوده شد ✓', 'success');
+}
+
+function renderStaff() {
+  const tbody = document.getElementById('staff-table');
+  if (!tbody) return;
+  if (!staffList.length) { tbody.innerHTML = '<tr id="staff-empty"><td colspan="12" style="text-align:center;padding:40px;color:var(--gray-400);">هنوز همکاری ثبت نشده</td></tr>'; return; }
+  tbody.innerHTML = staffList.map((s, i) => `
+    <tr>
+      <td>${i+1}</td><td class="td-name">${s.name}</td><td>${s.role||'-'}</td>
+      <td>${s.pid||'-'}</td><td>${s.nid||'-'}</td><td>${s.phone||'-'}</td>
+      <td>${s.exp||'-'}</td><td>${s.edu||'-'}</td><td>${s.grade||'-'}</td>
+      <td><span class="status-badge status-review">${s.hire}</span></td>
+      <td><span class="status-badge ${s.duty==='موظف'?'status-done':'status-pending'}">${s.duty}</span></td>
+      <td><button class="btn btn-danger btn-sm" onclick="delStaff(${s.id})">حذف</button></td>
+    </tr>
+  `).join('');
+}
+
+function delStaff(id) {
+  staffList = staffList.filter(s => s.id !== id);
+  renderStaff();
+  showNotification('همکار حذف شد');
+}
+
+// ─────────────────────────────────────────────
+// NEED STUDENTS
+// ─────────────────────────────────────────────
+function addNeedStudent() {
+  const name = document.getElementById('ns-name').value.trim();
+  if (!name) { showNotification('نام دانش‌آموز را وارد کنید', 'error'); return; }
+  const s = {
+    id: Date.now(),
+    name, grade: document.getElementById('ns-grade').value,
+    teacher: document.getElementById('ns-teacher').value,
+    agenda: document.getElementById('ns-agenda').value,
+  };
+  needStudents.push(s);
+  renderNeedStudents();
+  closeModal('modal-need-student');
+  ['ns-name','ns-grade','ns-teacher','ns-agenda'].forEach(id => document.getElementById(id).value = '');
+  showNotification('دانش‌آموز ثبت شد ✓', 'success');
+}
+
+function renderNeedStudents() {
+  const tbody = document.getElementById('need-students-table');
+  if (!tbody) return;
+  if (!needStudents.length) { tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;padding:32px;color:var(--gray-400);">دانش‌آموزی ثبت نشده</td></tr>'; return; }
+  tbody.innerHTML = needStudents.map((s, i) => `
+    <tr><td>${i+1}</td><td class="td-name">${s.name}</td><td>${s.grade||'-'}</td><td>${s.teacher||'-'}</td><td>${s.agenda||'-'}</td>
+    <td><button class="btn btn-danger btn-sm" onclick="delNeedStudent(${s.id})">حذف</button></td></tr>
+  `).join('');
+}
+
+function delNeedStudent(id) {
+  needStudents = needStudents.filter(s => s.id !== id);
+  renderNeedStudents();
+}
+
+// ─────────────────────────────────────────────
+// ROW HELPERS
+// ─────────────────────────────────────────────
+function delRow(btn) { btn.closest('tr').remove(); }
+
+let rowCounters = {};
+function addRow(tbodyId, html) {
+  rowCounters[tbodyId] = (rowCounters[tbodyId] || 1) + 1;
+  const n = rowCounters[tbodyId];
+  const tbody = document.getElementById(tbodyId);
+  const tr = document.createElement('tr');
+  tr.innerHTML = html.replace('__N__', n);
+  tbody.appendChild(tr);
+}
+
+function addWg1Row() {
+  addRow('wg1-table', `<td>__N__</td><td><input class="form-input" style="min-width:140px" placeholder="هدف یا راهبرد"></td><td><input class="form-input" style="min-width:160px" placeholder="شرح اقدام"></td><td><input class="form-input" style="min-width:100px" placeholder="نام مسئول"></td><td><input class="form-input" style="min-width:100px" placeholder="مثلاً شهریور"></td><td><select class="form-select" style="min-width:110px"><option>در دست اقدام</option><option>انجام‌شده</option><option>بررسی می‌شود</option></select></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`);
+}
+function addMissingRow() { addRow('missing-table', `<td>__N__</td><td><input class="form-input" placeholder="نام دانش‌آموز"></td><td><input class="form-input" placeholder="نوع مدرک ناقص"></td><td><input class="form-input" placeholder="نتیجه پیگیری"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addOutsideRow() { addRow('outside-table', `<td>__N__</td><td><input class="form-input" placeholder="نام دانش‌آموز"></td><td><input class="form-input" placeholder="آدرس"></td><td><input class="form-input" placeholder="علت"></td><td><input class="form-input" placeholder="شماره نامه"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addForeignRow() { addRow('foreign-table', `<td>__N__</td><td><input class="form-input" placeholder="نام دانش‌آموز"></td><td><input class="form-input" placeholder="کد یکتا"></td><td><input class="form-input" placeholder="پایه"></td><td><input class="form-input" placeholder="نوع مدرک"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addStartWorkRow() { addRow('startwork-table', `<td>__N__</td><td><input class="form-input" placeholder="نام همکار"></td><td><input class="form-input" placeholder="سمت"></td><td><input class="form-input" placeholder="تاریخ"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addWg4ParentRow() { addRow('wg4-parents-table', `<td>__N__</td><td><input class="form-input" placeholder="موضوع کارگاه"></td><td><input class="form-input" placeholder="تاریخ"></td><td><input class="form-input" placeholder="نام مدرس"></td><td><input class="form-input" placeholder="مسئول"></td><td><input class="form-input" placeholder="توضیحات"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addWg4StaffRow() { addRow('wg4-staff-table', `<td>__N__</td><td><input class="form-input" placeholder="موضوع کارگاه"></td><td><input class="form-input" placeholder="تاریخ"></td><td><input class="form-input" placeholder="نام مدرس"></td><td><input class="form-input" placeholder="مسئول"></td><td><input class="form-input" placeholder="توضیحات"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addCreativeRow() { addRow('creative-table', `<td>__N__</td><td><input class="form-input" placeholder="شرح اقدام خلاقانه"></td><td><input class="form-input" placeholder="نام پیشنهاددهنده"></td><td><input class="form-input" placeholder="نام مجری"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addCpmRow() { addRow('cpm-table', `<td>__N__</td><td><input class="form-input" placeholder="نوع فعالیت عمرانی/بهداشتی"></td><td><input class="form-input" placeholder="مسئول"></td><td><input class="form-input" type="number" placeholder="مبلغ"></td><td><input class="form-input" placeholder="منبع اعتبار"></td><td><input class="form-input" placeholder="تاریخ اجرا"></td><td><select class="form-select"><option>در دست اقدام</option><option>انجام‌شده</option><option>برنامه‌ریزی‌شده</option></select></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addCpmRow2() { addRow('cpm-table2', `<td>__N__</td><td><input class="form-input" placeholder="نوع فعالیت"></td><td><input class="form-input" placeholder="مسئول"></td><td><input class="form-input" type="number" placeholder="مبلغ"></td><td><input class="form-input" placeholder="محل اعتبار"></td><td><input class="form-input" placeholder="تاریخ"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addIlliterateRow() { addRow('illiterate-table', `<td>__N__</td><td><input class="form-input" placeholder="نام اولیاء"></td><td><select class="form-select"><option>پدر</option><option>مادر</option><option>سرپرست</option></select></td><td><input class="form-input" placeholder="نام دانش‌آموز"></td><td><input class="form-input" placeholder="پایه"></td><td><input class="form-input" placeholder="سطح سواد"></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+function addDropoutRow() { addRow('dropout-table', `<td>__N__</td><td><input class="form-input" placeholder="نام دانش‌آموز"></td><td><input class="form-input" type="number" placeholder="سن"></td><td><input class="form-input" placeholder="پایه"></td><td><input class="form-input" placeholder="علت"></td><td><input class="form-input" placeholder="مسئول"></td><td><select class="form-select"><option>در حال پیگیری</option><option>جذب‌شده</option><option>ثبت‌نام نکرده</option></select></td><td><button class="btn btn-danger btn-sm btn-icon" onclick="delRow(this)">🗑️</button></td>`); }
+
+// ─────────────────────────────────────────────
+// CLEAR FORMS
+// ─────────────────────────────────────────────
+function clearMeeting() {
+  document.querySelectorAll('#page-forms_meeting input').forEach(i => i.value = '');
+  showNotification('فرم پاک شد');
+}
+function clearStudentForm() {
+  document.querySelectorAll('#page-forms_student input, #page-forms_student select').forEach(i => { if (i.type === 'radio' || i.type === 'checkbox') i.checked = false; else if (i.tagName === 'SELECT') i.selectedIndex = 0; else i.value = ''; });
+  showNotification('فرم پاک شد');
+}
+
+// ─────────────────────────────────────────────
+// SIMPLE TITLE-BASED DOCUMENT UPLOAD (کارگروه‌ها و فرم‌ها و اسناد)
+// فقط عنوان‌ها هستند؛ برای هرکدام فقط بارگذاری عکس یا PDF ممکن است
+// ─────────────────────────────────────────────
+const SECTION_TITLES = {
+  wg1: ['تشکیل ستاد پروژه مهر و صدور حکم/ابلاغ اعضا', 'تدوین برنامه زمان‌بندی کلی (تقویم اجرایی) پروژه مهر', 'برگزاری جلسات هماهنگی ستاد و تنظیم صورتجلسات', 'تعیین مسئول اجرا و زمان‌بندی برای هر کارگروه تخصصی', 'پیگیری مصوبات و رصد پیشرفت کارگروه‌ها', 'تهیه گزارش عملکرد و ارائه به اداره آموزش و پرورش', 'جمع‌بندی نهایی و ارزیابی پروژه مهر در پایان شهریورماه'],
+  wg2: ['ثبت‌نام دانش‌آموزان پایه اول', 'ثبت‌نام دانش‌آموزان میان‌پایه', 'تکمیل مدارک ناقص دانش‌آموزان', 'دانش‌آموزان خارج از محدوده', 'دانش‌آموزان اتباع خارجی', 'کلاس‌بندی و تراکم کلاس‌ها'],
+  wg3: ['کلاس‌بندی و تعیین تراکم کلاس‌ها', 'صدور نامه شروع به کار همکاران', 'تکمیل پرونده پرسنلی همکاران', 'معرفی نیروهای جدید'],
+  wg4: ['کارگاه آموزشی ویژه اولیاء پایه اول', 'کارگاه نقش خانواده در موفقیت تحصیلی', 'کارگاه توانمندسازی همکاران', 'کارگاه روش‌های نوین تدریس', 'دانش‌آموزان نیازمند حمایت ویژه'],
+  wg5: ['جشن آغازین سال تحصیلی', 'جشن شکوفه‌ها', 'تأمین لوازم‌التحریر دانش‌آموزان نیازمند', 'هفته دفاع مقدس', 'جشن غنچه‌ها (پیش‌دبستانی)', 'نمایشگاه هفته دفاع مقدس', 'فعالیت‌های خلاقانه'],
+  wg6: ['رنگ‌آمیزی درب ورودی و نمای حیاط', 'شارژ کپسول‌های آتش‌نشانی', 'سرویس سیستم سرمایشی و گرمایشی', 'تعویض پرده و تجهیزات کلاس‌ها', 'شاداب‌سازی و زیباسازی حیاط'],
+  wg7: ['شناسایی اولیاء بی‌سواد', 'شناسایی دانش‌آموزان بازمانده از تحصیل', 'پیگیری و جذب دانش‌آموزان بازمانده'],
+  forms_announce: ['ابلاغ‌های صادرشده اعضای ستاد'],
+  forms_meeting: ['صورتجلسات ستاد پروژه مهر'],
+  forms_student: ['فرم‌های مشخصات دانش‌آموزان تکمیل‌شده'],
+  forms_checkmatch: ['فرم‌های تطبیق شناسنامه تکمیل‌شده'],
+  forms_cpm: ['جدول CPM عمرانی تکمیل‌شده'],
+  members: ['ابلاغ اعضای پروژه مهر', 'صورتجلسه انتخاب و معارفه اعضا', 'لیست اعضای ستاد ثبت‌نام'],
+};
+const SECTION_PAGE_TITLES = {
+  wg1: '📋 برنامه عملیاتی', wg2: '📝 ثبت‌نام دانش‌آموزان', wg3: '👥 ساماندهی نیروی انسانی',
+  wg4: '🎓 توانمندسازی آموزشی', wg5: '🎉 فرهنگی-تربیتی', wg6: '🏗️ عمرانی، بهداشتی و ایمنی', wg7: '📚 انسداد مبادی بی‌سوادی',
+  forms_announce: '📄 ابلاغ عضویت', forms_meeting: '🗒️ صورتجلسه', forms_student: '🧒 فرم مشخصات دانش‌آموز',
+  forms_checkmatch: '🔍 فرم تطبیق شناسنامه', forms_cpm: '🏗️ جدول CPM عمرانی', members: '🌟 اعضای پروژه مهر',
+};
+const WG_IDS = ['wg1','wg2','wg3','wg4','wg5','wg6','wg7'];
+const ALL_SECTION_IDS = Object.keys(SECTION_TITLES);
+let sectionDocs = {}; // key `${sectionId}-${idx}` -> [{type:'image'|'pdf', name, data}]
+let itemLinks = {}; // key `${sectionId}-${idx}` -> [{label, url}]
+let customSectionItems = {}; // key sectionId -> [titleString, ...] آیتم‌های جدیدی که کاربر اضافه کرده
+
+function normalizeUrl(url) {
+  url = (url || '').trim();
+  if (!url) return '';
+  if (!/^https?:\/\//i.test(url)) url = 'https://' + url;
+  return url;
+}
+
+function toggleItemLinkForm(key) {
+  const form = document.getElementById('link-form-' + key);
+  if (!form) return;
+  form.style.display = (form.style.display === 'none' || !form.style.display) ? 'flex' : 'none';
+}
+
+function addItemLink(key) {
+  const labelEl = document.getElementById('link-label-' + key);
+  const urlEl = document.getElementById('link-url-' + key);
+  const label = (labelEl.value || '').trim();
+  const url = normalizeUrl(urlEl.value);
+  if (!label || !url) {
+    showNotification('عنوان و آدرس لینک را وارد کنید', 'error');
+    return;
+  }
+  (itemLinks[key] || (itemLinks[key] = [])).push({ label, url });
+  labelEl.value = '';
+  urlEl.value = '';
+  const form = document.getElementById('link-form-' + key);
+  if (form) form.style.display = 'none';
+  renderItemLinks(key);
+  scheduleAutoSave();
+  showNotification('لینک با موفقیت اضافه شد ✓', 'success');
+}
+
+function deleteItemLink(key, i) {
+  if (!itemLinks[key]) return;
+  itemLinks[key].splice(i, 1);
+  renderItemLinks(key);
+  scheduleAutoSave();
+  showNotification('لینک حذف شد');
+}
+
+function renderItemLinks(key) {
+  const list = document.getElementById('link-list-' + key);
+  if (!list) return;
+  const links = itemLinks[key] || [];
+  list.innerHTML = links.length ? links.map((l, i) => `
+    <div class="link-chip">
+      <a href="${l.url}" target="_blank" rel="noopener">🔗 ${l.label} <span class="link-url">(${l.url})</span></a>
+      <button class="btn btn-danger btn-sm btn-icon link-del no-print" onclick="deleteItemLink('${key}', ${i})">🗑️</button>
+    </div>
+  `).join('') : '<div class="link-empty">لینکی اضافه نشده است</div>';
+}
+
+function renderSectionAccordion(sectionId) {
+  const container = document.getElementById('accordion-' + sectionId);
+  if (!container) return;
+  const baseTitles = SECTION_TITLES[sectionId] || [];
+  const customTitles = customSectionItems[sectionId] || [];
+  const titles = baseTitles.concat(customTitles);
+  let html = '';
+  titles.forEach((title, idx) => {
+    const key = `${sectionId}-${idx}`;
+    const docs = sectionDocs[key] || [];
+    const has = docs.length > 0;
+    const isCustom = idx >= baseTitles.length;
+    html += `
+      <div class="checklist-item-wrapper">
+        <div class="checklist-item${has ? ' status-done' : ' status-notstarted'}" id="si-${key}" onclick="toggleSectionExpand('${key}')">
+          <div class="check-box">${has ? '✓' : '✕'}</div>
+          <div class="check-text">${escapeHtml(title)}</div>
+          <div class="doc-count-badge">${docs.length ? docs.length + ' مستند' : 'بدون مستند'}</div>
+          ${isCustom ? `<button class="btn btn-danger btn-sm btn-icon checklist-item-delete no-print" onclick="event.stopPropagation(); deleteCustomSectionItem('${sectionId}', ${idx - baseTitles.length})" title="حذف آیتم">🗑️</button>` : ''}
+          <div class="expand-arrow">▾</div>
+        </div>
+        <div class="checklist-expand" id="sexpand-${key}">
+          <div class="doc-upload-row">
+            <label class="btn btn-outline btn-sm gallery-upload-label" onclick="event.stopPropagation()">📤 بارگذاری عکس یا PDF<input type="file" accept="image/*,application/pdf" multiple style="display:none" onchange="handleSectionDocUpload('${key}', this)"></label>
+            <button class="btn btn-outline btn-sm" onclick="event.stopPropagation(); printSectionItemDocs('${key}')">🖨️ چاپ / PDF</button>
+          </div>
+          <div class="doc-grid" id="sdoc-grid-${key}"></div>
+          <div class="item-link-block" onclick="event.stopPropagation()">
+            <div class="item-link-header">
+              <span>🔗 لینک‌ها</span>
+              <button class="btn btn-outline btn-sm link-plus-btn" onclick="event.stopPropagation(); toggleItemLinkForm('${key}')">+</button>
+            </div>
+            <div class="link-add-row" id="link-form-${key}" style="display:none;">
+              <input type="text" class="form-input" id="link-label-${key}" placeholder="عنوان لینک" onclick="event.stopPropagation()">
+              <input type="url" class="form-input" id="link-url-${key}" placeholder="آدرس لینک (https://...)" onclick="event.stopPropagation()">
+              <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); addItemLink('${key}')">ثبت لینک</button>
+            </div>
+            <div class="link-list" id="link-list-${key}"><div class="link-empty">لینکی اضافه نشده است</div></div>
+          </div>
+        </div>
+      </div>`;
+  });
+  const addRowHtml = WG_IDS.includes(sectionId) ? `
+    <div class="checklist-add-row no-print">
+      <input type="text" class="form-input" id="new-item-${sectionId}" placeholder="عنوان آیتم جدید" onkeydown="if(event.key==='Enter'){event.preventDefault();addChecklistItem('${sectionId}');}">
+      <button class="btn btn-primary btn-sm" onclick="addChecklistItem('${sectionId}')">➕ افزودن آیتم جدید</button>
+    </div>` : '';
+  container.innerHTML = (html || '<div class="gallery-empty">آیتمی تعریف نشده است</div>') + addRowHtml;
+  titles.forEach((_, idx) => { renderSectionDocs(`${sectionId}-${idx}`); renderItemLinks(`${sectionId}-${idx}`); });
+}
+
+function addChecklistItem(sectionId) {
+  const input = document.getElementById('new-item-' + sectionId);
+  const title = (input.value || '').trim();
+  if (!title) { showNotification('عنوان آیتم را وارد کنید', 'error'); return; }
+  (customSectionItems[sectionId] || (customSectionItems[sectionId] = [])).push(title);
+  renderSectionAccordion(sectionId);
+  updateDashboardPercents();
+  scheduleAutoSave();
+  showNotification('آیتم جدید اضافه شد ✓', 'success');
+}
+
+function deleteCustomSectionItem(sectionId, customIdx) {
+  const list = customSectionItems[sectionId] || [];
+  if (customIdx < 0 || customIdx >= list.length) return;
+  if (!confirm('این آیتم و مستندات/لینک‌های آن حذف شود؟')) return;
+  const baseCount = (SECTION_TITLES[sectionId] || []).length;
+  const total = baseCount + list.length;
+  // شیفت دادن کلیدهای مستندات/لینک‌های آیتم‌های بعدی برای حفظ تطابق ایندکس‌ها
+  for (let i = baseCount + customIdx; i < total - 1; i++) {
+    const curKey = `${sectionId}-${i}`;
+    const nextKey = `${sectionId}-${i + 1}`;
+    sectionDocs[curKey] = sectionDocs[nextKey];
+    itemLinks[curKey] = itemLinks[nextKey];
+  }
+  const lastKey = `${sectionId}-${total - 1}`;
+  delete sectionDocs[lastKey];
+  delete itemLinks[lastKey];
+  list.splice(customIdx, 1);
+  renderSectionAccordion(sectionId);
+  updateDashboardPercents();
+  scheduleAutoSave();
+  showNotification('آیتم حذف شد');
+}
+
+function renderAllSectionAccordions() { ALL_SECTION_IDS.forEach(renderSectionAccordion); }
+
+// ─────────────────────────────────────────────
+// WORKGROUP TEAM BOX (اعضا / مسئول اجرا / زمان اجرا)
+// ─────────────────────────────────────────────
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function renderWgTeamBox(id) {
+  const box = document.getElementById(id + '-team-box');
+  if (!box) return;
+  const data = wgTeam[id];
+  const membersHtml = data.members.length
+    ? data.members.map((m, i) => `
+        <div class="wg-team-member">
+          <div class="wg-team-member-info">
+            <span class="wg-team-member-name">${escapeHtml(m.name)}</span>
+            ${m.role ? `<span class="wg-team-member-role">${escapeHtml(m.role)}</span>` : ''}
+          </div>
+          <button class="btn btn-danger btn-sm btn-icon" onclick="removeWgMember('${id}', ${i})" title="حذف عضو">🗑️</button>
+        </div>`).join('')
+    : `<div class="wg-team-empty">هنوز عضوی به این کارگروه اضافه نشده است</div>`;
+
+  box.innerHTML = `
+    <div class="card wg-team-card">
+      <div class="card-header">
+        <div class="card-title">👥 اعضای کارگروه</div>
+      </div>
+      <div class="card-body">
+        <div class="wg-team-list">${membersHtml}</div>
+        <div class="wg-team-add-row">
+          <input type="text" class="form-input" id="${id}-mem-name" placeholder="نام عضو" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
+          <input type="text" class="form-input" id="${id}-mem-role" placeholder="سمت (اختیاری)" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
+          <button class="btn btn-primary btn-sm" onclick="addWgMember('${id}')">➕ افزودن عضو</button>
+        </div>
+        <div class="wg-team-divider"></div>
+        <div class="form-group">
+          <label class="form-label">مسئول اجرا</label>
+          <input type="text" class="form-input" id="${id}-responsible" placeholder="نام مسئول اجرا" value="${escapeHtml(data.responsible)}" oninput="updateWgField('${id}','responsible', this.value)">
+        </div>
+        <div class="form-group">
+          <label class="form-label">زمان اجرا</label>
+          <input type="text" class="form-input" id="${id}-exectime" placeholder="مثلاً: تا پایان شهریورماه" value="${escapeHtml(data.execTime)}" oninput="updateWgField('${id}','execTime', this.value)">
+        </div>
+      </div>
+    </div>`;
+}
+
+function addWgMember(id) {
+  const nameEl = document.getElementById(id + '-mem-name');
+  const roleEl = document.getElementById(id + '-mem-role');
+  const name = nameEl.value.trim();
+  if (!name) { showNotification('نام عضو را وارد کنید', 'error'); return; }
+  wgTeam[id].members.push({ name, role: roleEl.value.trim() });
+  renderWgTeamBox(id);
+  scheduleAutoSave();
+  showNotification('عضو به کارگروه اضافه شد ✓', 'success');
+}
+
+function removeWgMember(id, idx) {
+  wgTeam[id].members.splice(idx, 1);
+  renderWgTeamBox(id);
+  scheduleAutoSave();
+}
+
+function updateWgField(id, field, value) {
+  wgTeam[id][field] = value;
+  scheduleAutoSave();
+}
+
+function renderAllWgTeamBoxes() { WG_TEAM_IDS.forEach(renderWgTeamBox); }
+
+function toggleSectionExpand(key) {
+  const panel = document.getElementById('sexpand-' + key);
+  const header = document.getElementById('si-' + key);
+  if (!panel || !header) return;
+  panel.classList.toggle('open');
+  header.classList.toggle('expanded');
+}
+
+function handleSectionDocUpload(key, input) {
+  const files = Array.from(input.files || []);
+  if (!files.length) return;
+  const current = sectionDocs[key] || (sectionDocs[key] = []);
+  const remaining = DOC_MAX - current.length;
+  if (remaining <= 0) {
+    showNotification('حداکثر ۱۰ مستند برای هر عنوان مجاز است', 'error');
+    input.value = '';
+    return;
+  }
+  const toAdd = files.slice(0, remaining);
+  if (files.length > remaining) {
+    showNotification(`فقط ${remaining} مورد اضافه شد (سقف ۱۰ مستند)`, 'error');
+  }
+  let loaded = 0;
+  toAdd.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      current.push({ type: isPdfFile(file) ? 'pdf' : 'image', name: file.name, data: e.target.result });
+      loaded++;
+      if (loaded === toAdd.length) {
+        renderSectionDocs(key);
+        updateSectionItemStatus(key);
+        updateDashboardPercents();
+        scheduleAutoSave();
+        showNotification('مستند با موفقیت بارگذاری شد ✓', 'success');
+      }
+    };
+    reader.readAsDataURL(file);
+  });
+  input.value = '';
+}
+
+function renderSectionDocs(key) {
+  const grid = document.getElementById('sdoc-grid-' + key);
+  if (!grid) return;
+  const docs = sectionDocs[key] || [];
+  grid.innerHTML = docs.length ? docs.map((d, i) => {
+    if (d.type === 'pdf') {
+      return `<div class="doc-item doc-pdf" onclick="viewSectionDoc('${key}', ${i})">
+        <div class="doc-pdf-icon">📄</div>
+        <div class="doc-pdf-name">${d.name || 'PDF'}</div>
+        <button class="gallery-del no-print" onclick="event.stopPropagation(); deleteSectionDoc('${key}', ${i})">✕</button>
+      </div>`;
+    }
+    return `<div class="doc-item" onclick="viewSectionDoc('${key}', ${i})">
+      <img src="${d.data}" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'doc-pdf-icon',textContent:'📎'}))">
+      <button class="gallery-del no-print" onclick="event.stopPropagation(); deleteSectionDoc('${key}', ${i})">✕</button>
+    </div>`;
+  }).join('') : '<div class="gallery-empty">هنوز مستندی بارگذاری نشده است</div>';
+}
+
+function updateSectionItemStatus(key) {
+  const header = document.getElementById('si-' + key);
+  if (!header) return;
+  const docs = sectionDocs[key] || [];
+  const has = docs.length > 0;
+  header.classList.toggle('status-done', has);
+  header.classList.toggle('status-notstarted', !has);
+  const box = header.querySelector('.check-box');
+  if (box) box.textContent = has ? '✓' : '✕';
+  const badge = header.querySelector('.doc-count-badge');
+  if (badge) badge.textContent = docs.length ? docs.length + ' مستند' : 'بدون مستند';
+}
+
+function deleteSectionDoc(key, i) {
+  if (!sectionDocs[key]) return;
+  sectionDocs[key].splice(i, 1);
+  renderSectionDocs(key);
+  updateSectionItemStatus(key);
+  updateDashboardPercents();
+  scheduleAutoSave();
+  showNotification('مستند حذف شد');
+}
+
+function viewSectionDoc(key, i) {
+  const doc = (sectionDocs[key] || [])[i];
+  if (!doc) return;
+  if (doc.type === 'pdf') {
+    window.open(dataURLToBlobURL(doc.data), '_blank');
+    return;
+  }
+  const w = window.open('', '_blank');
+  w.document.write(`<title>مشاهده مستند</title><body style="margin:0;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="${doc.data}" style="max-width:100%;max-height:100vh;"></body>`);
+  w.document.close();
+}
+
+function printSectionItemDocs(key) {
+  const [sectionId, idxStr] = key.split(/-(?=[0-9]+$)/);
+  const idx = Number(idxStr);
+  const combinedTitles = (SECTION_TITLES[sectionId] || []).concat(customSectionItems[sectionId] || []);
+  const title = combinedTitles[idx] || 'مستندات';
+  const docs = sectionDocs[key] || [];
+  if (!docs.length) { showNotification('مستندی برای چاپ در این عنوان وجود ندارد', 'error'); return; }
+  const n = docs.length;
+  const cols = Math.ceil(Math.sqrt(n));
+  const rows = Math.ceil(n / cols);
+  const cells = docs.map(d => {
+    const inner = d.type === 'pdf' ? `<embed src="${d.data}" type="application/pdf">` : `<img src="${d.data}">`;
+    return `<div class="cell">${inner}<div class="cap">${d.name || ''}</div></div>`;
+  }).join('');
+  const w = window.open('', '_blank');
+  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${title}</title>
+    <style>
+      @page { size: A4; margin: 10mm; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
+      .page { display: flex; flex-direction: column; height: 100%; }
+      h2 { font-size: 15px; margin: 0 0 10px; border-bottom: 2px solid #c9a227; padding-bottom: 8px; flex-shrink: 0; }
+      .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(${cols}, 1fr); grid-template-rows: repeat(${rows}, 1fr); gap: 8mm; }
+      .cell { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+      .cell img, .cell embed { max-width: 100%; max-height: calc(100% - 16px); width: auto; height: auto; border: 1px solid #ccc; border-radius: 6px; }
+      .cap { font-size: 10px; color: #666; margin-top: 4px; text-align: center; flex-shrink: 0; }
+    </style></head>
+    <body onload="setTimeout(function(){window.print();}, 400)"><div class="page"><h2>${title}</h2><div class="grid">${cells}</div></div></body></html>`;
+  w.document.write(html);
+  w.document.close();
+}
+
+function printSectionAll(sectionId) {
+  const titles = (SECTION_TITLES[sectionId] || []).concat(customSectionItems[sectionId] || []);
+  const pageTitle = SECTION_PAGE_TITLES[sectionId] || '';
+  let blocksHtml = '';
+  titles.forEach((title, idx) => {
+    const key = `${sectionId}-${idx}`;
+    const docs = sectionDocs[key] || [];
+    let inner;
+    if (docs.length) {
+      inner = `<div class="tgrid">${docs.map(d => {
+        const cell = d.type === 'pdf' ? `<embed src="${d.data}" type="application/pdf">` : `<img src="${d.data}">`;
+        return `<div class="tcell">${cell}</div>`;
+      }).join('')}</div>`;
+    } else {
+      inner = `<div class="no-doc">بدون مستند</div>`;
+    }
+    blocksHtml += `<section class="tblock"><h3>${title}</h3>${inner}</section>`;
+  });
+  const w = window.open('', '_blank');
+  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${pageTitle}</title>
+    <style>
+      @page { size: A4; margin: 12mm; }
+      * { box-sizing: border-box; }
+      body { font-family: Tahoma, Arial, sans-serif; color: #1a202c; margin: 0; padding: 0; }
+      h1 { font-size: 18px; border-bottom: 3px solid #c9a227; padding-bottom: 10px; margin: 0 0 18px; }
+      .tblock { page-break-inside: avoid; margin-bottom: 22px; }
+      h3 { font-size: 14px; background: #f3f4f6; padding: 8px 12px; border-radius: 6px; margin: 0 0 10px; }
+      .tgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+      .tgrid img, .tgrid embed { width: 100%; height: 220px; border: 1px solid #ccc; border-radius: 6px; }
+      .no-doc { color: #999; font-size: 12px; padding: 10px 4px; }
+    </style></head>
+    <body onload="setTimeout(function(){window.print();}, 500)"><h1>${pageTitle}</h1>${blocksHtml}</body></html>`;
+  w.document.write(html);
+  w.document.close();
+}
+
+function updateTotalDocsStat() {
+  let total = 0;
+  Object.values(checklistDocs).forEach(arr => { total += (arr || []).length; });
+  Object.values(sectionDocs).forEach(arr => { total += (arr || []).length; });
+  const el = document.getElementById('stat-members');
+  if (el) el.textContent = total;
+}
+
+function updateDashboardPercents() {
+  updateTotalDocsStat();
+  WG_IDS.forEach(id => {
+    const titles = (SECTION_TITLES[id] || []).concat(customSectionItems[id] || []);
+    const total = titles.length;
+    let done = 0;
+    titles.forEach((_, idx) => { if ((sectionDocs[`${id}-${idx}`] || []).length > 0) done++; });
+    const pct = total > 0 ? Math.round(done / total * 100) : 0;
+    document.querySelectorAll('.' + id + '-pct').forEach(el => el.textContent = pct + '٪');
+    const bar = document.querySelector('.' + id + '-bar');
+    if (bar) bar.style.width = pct + '%';
+  });
+}
+
+
+// ─────────────────────────────────────────────
+// BACKUP / RESTORE
+// ─────────────────────────────────────────────
+function getAllFormElements() {
+  return Array.from(document.querySelectorAll('.page input, .page select, .page textarea'));
+}
+
+function collectBackupData() {
+  const els = getAllFormElements();
+  const formValues = els.map(el => {
+    if (el.type === 'checkbox' || el.type === 'radio') return { checked: el.checked };
+    if (el.type === 'file') return null;
+    return { value: el.value };
+  });
+  return {
+    version: 2,
+    savedAt: new Date().toISOString(),
+    checklistDocs, checklistStatus, checklistResp,
+    sectionDocs, itemLinks, wgTeam, customSectionItems,
+    formValues,
+  };
+}
+
+function downloadBackup() {
+  const data = collectBackupData();
+  const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  const now = new Date();
+  const stamp = now.toISOString().slice(0, 10);
+  a.href = url;
+  a.download = `backup-پروژه-مهر-${stamp}.json`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showNotification('فایل پشتیبان با موفقیت دانلود شد ✓', 'success');
+}
+
+function applyBackupData(data) {
+  try {
+    checklistDocs = data.checklistDocs || {};
+    checklistStatus = data.checklistStatus || {};
+    checklistResp = data.checklistResp || {};
+    sectionDocs = data.sectionDocs || {};
+    itemLinks = data.itemLinks || {};
+    customSectionItems = data.customSectionItems || {};
+    if (data.wgTeam) {
+      WG_TEAM_IDS.forEach(id => {
+        wgTeam[id] = Object.assign({ members: [], responsible: '', execTime: '' }, data.wgTeam[id] || {});
+      });
+    }
+
+    renderChecklist();
+    renderAllSectionAccordions();
+    renderAllWgTeamBoxes();
+    updateDashboardPercents();
+
+    if (Array.isArray(data.formValues)) {
+      const els = getAllFormElements();
+      data.formValues.forEach((v, i) => {
+        const el = els[i];
+        if (!el || v == null) return;
+        if (el.type === 'checkbox' || el.type === 'radio') el.checked = !!v.checked;
+        else if (el.type !== 'file') el.value = v.value ?? '';
+      });
+    }
+    return true;
+  } catch (e) {
+    console.error('خطا در بازیابی بکاپ:', e);
+    return false;
+  }
+}
+
+function restoreProject(input) {
+  const file = input.files && input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const ok = applyBackupData(data);
+      showNotification(ok ? 'بازیابی بکاپ با موفقیت انجام شد ✓' : 'فایل بکاپ نامعتبر است', ok ? 'success' : 'error');
+    } catch (err) {
+      showNotification('خطا در خواندن فایل بکاپ', 'error');
+    }
+  };
+  reader.readAsText(file);
+  input.value = '';
+}
+
+// ذخیره خودکار محلی (در همان مرورگر) تا در صورت رفرش صفحه اطلاعات از دست نرود
+let autoSaveTimer = null;
+let autoSaveWarned = false;
+function scheduleAutoSave() {
+  clearTimeout(autoSaveTimer);
+  autoSaveTimer = setTimeout(() => {
+    try {
+      localStorage.setItem('mehrProjectAutoSave', JSON.stringify(collectBackupData()));
+    } catch (e) {
+      console.warn('ذخیره خودکار ناموفق بود (حجم زیاد عکس‌ها/PDFها؟)', e);
+      if (!autoSaveWarned) {
+        autoSaveWarned = true;
+        showNotification('حجم فایل‌ها زیاد است و ذخیره خودکار مرورگر پر شده؛ حتماً از دکمه «💾 پشتیبان‌گیری» برای دانلود بکاپ استفاده کن', 'error');
+      }
+    }
+  }, 900);
+}
+
+function loadAutoSave() {
+  try {
+    const raw = localStorage.getItem('mehrProjectAutoSave');
+    if (!raw) return;
+    applyBackupData(JSON.parse(raw));
+  } catch (e) { console.warn('بارگذاری ذخیره خودکار ناموفق بود', e); }
+}
+
+document.addEventListener('input', (e) => {
+  if (e.target && e.target.closest('.page')) scheduleAutoSave();
+});
+document.addEventListener('change', (e) => {
+  if (e.target && e.target.closest('.page') && e.target.tagName === 'SELECT') scheduleAutoSave();
+});
+
+// ─────────────────────────────────────────────
+// INIT
+// ─────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  renderChecklist();
+  renderAllSectionAccordions();
+  renderAllWgTeamBoxes();
+  updateDashboardPercents();
+  loadAutoSave();
+});
+</script>
+</body>
+</html>
