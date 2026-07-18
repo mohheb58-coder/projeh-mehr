@@ -1138,15 +1138,13 @@ tbody td {
   .two-col, .three-col { grid-template-columns: 1fr; }
   .form-grid, .form-grid-3 { grid-template-columns: 1fr; }
   .hero-title { font-size: 26px; }
-  .wg-layout { grid-template-columns: 1fr; }
 }
 
 /* ─── WORKGROUP LAYOUT (اعضا / مسئول اجرا / زمان اجرا) ─── */
 .wg-layout {
-  display: grid;
-  grid-template-columns: 1fr 300px;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
-  align-items: start;
 }
 
 .wg-team-card .card-body { display: flex; flex-direction: column; gap: 14px; }
@@ -1173,6 +1171,35 @@ tbody td {
 .wg-col-actions { display: flex; gap: 4px; align-items: center; white-space: nowrap; }
 .wg-col-actions .btn-icon { width: 24px; height: 24px; padding: 0; font-size: 11px; }
 .wg-col-actions .btn:disabled { opacity: 0.3; cursor: not-allowed; }
+.wg-mobile-label { display: none; }
+
+/* روی صفحه‌های باریک (موبایل)، جدول اعضا به کارت‌های ردیفی تبدیل می‌شود تا نام و سمت به‌طور کامل دیده شود */
+@media (max-width: 640px) {
+  .wg-team-table thead { display: none; }
+  .wg-team-table, .wg-team-table tbody, .wg-team-table tr, .wg-team-table td { display: block; width: 100%; }
+  .wg-team-table tbody tr {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 4px 8px;
+    border: 1px solid var(--gray-200); border-radius: 10px;
+    padding: 10px 12px; margin-bottom: 10px; background: var(--gray-50);
+  }
+  .wg-team-table tbody tr:last-child { margin-bottom: 0; }
+  .wg-team-table td { padding: 0; border: none; width: auto; }
+  .wg-team-table td.wg-col-idx {
+    order: 0; flex: 0 0 auto; width: 24px; height: 24px; border-radius: 50%;
+    background: var(--navy); color: var(--white); display: flex; align-items: center;
+    justify-content: center; font-size: 11px; font-weight: 700;
+  }
+  .wg-team-table td.wg-team-name-cell {
+    order: 1; flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 6px;
+  }
+  .wg-team-table td.wg-team-role-cell {
+    order: 3; flex: 1 1 100%; display: flex; align-items: center; gap: 6px;
+    padding-right: 32px !important;
+  }
+  .wg-team-table td.wg-col-actions { order: 2; flex: 0 0 auto; }
+  .wg-team-table .wg-mobile-label { display: inline-block; flex-shrink: 0; font-size: 11px; color: var(--gray-400); }
+  .wg-team-cell-input { min-width: 0; }
+}
 
 .wg-team-empty {
   font-size: 12.5px;
@@ -1198,13 +1225,27 @@ tbody td {
 .wg-team-member-name { font-size: 13px; font-weight: 700; color: var(--navy); }
 .wg-team-member-role { font-size: 11.5px; color: var(--gray-500); }
 
-.wg-team-add-row { display: flex; flex-direction: column; gap: 8px; }
-.wg-team-add-row .btn { align-self: flex-start; }
+.wg-team-controls-row {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  padding-top: 14px; border-top: 1px dashed var(--gray-200);
+}
+.wg-team-add-inline { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; width: 100%; }
+.wg-team-add-inline .form-input { flex: 1 1 200px; min-width: 160px; }
+.wg-team-add-inline .btn { flex-shrink: 0; }
 
-.wg-team-divider { height: 1px; background: var(--gray-100); margin: 2px 0; }
+.wg-team-meta-row {
+  display: flex; flex-wrap: wrap; gap: 16px;
+  padding-top: 14px; border-top: 1px dashed var(--gray-200);
+}
+.wg-team-meta-row .form-group { flex: 1 1 220px; min-width: 200px; }
 
 .wg-team-card .form-group { margin: 0; }
 .wg-team-card .form-label { margin-bottom: 6px; display: block; }
+
+@media (max-width: 640px) {
+  .wg-team-meta-row { flex-direction: column; }
+  .wg-team-meta-row .form-group { min-width: 0; }
+}
 
 /* ─── TIMELINE ─── */
 .timeline { position: relative; padding-right: 28px; }
@@ -1606,8 +1647,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg1')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg1"></div>
         <div class="wg-team-box" id="wg1-team-box"></div>
+        <div class="checklist-section" id="accordion-wg1"></div>
       </div>
     </div>
 
@@ -1618,8 +1659,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg2')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg2"></div>
         <div class="wg-team-box" id="wg2-team-box"></div>
+        <div class="checklist-section" id="accordion-wg2"></div>
       </div>
     </div>
 
@@ -1630,8 +1671,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg3')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg3"></div>
         <div class="wg-team-box" id="wg3-team-box"></div>
+        <div class="checklist-section" id="accordion-wg3"></div>
       </div>
     </div>
 
@@ -1642,8 +1683,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg4')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg4"></div>
         <div class="wg-team-box" id="wg4-team-box"></div>
+        <div class="checklist-section" id="accordion-wg4"></div>
       </div>
     </div>
 
@@ -1654,8 +1695,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg5')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg5"></div>
         <div class="wg-team-box" id="wg5-team-box"></div>
+        <div class="checklist-section" id="accordion-wg5"></div>
       </div>
     </div>
 
@@ -1666,8 +1707,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg6')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg6"></div>
         <div class="wg-team-box" id="wg6-team-box"></div>
+        <div class="checklist-section" id="accordion-wg6"></div>
       </div>
     </div>
 
@@ -1678,8 +1719,8 @@ tbody td {
         <button class="btn btn-outline btn-sm" onclick="printSectionAll('wg7')">🖨️ چاپ</button>
       </div>
       <div class="wg-layout">
-        <div class="checklist-section" id="accordion-wg7"></div>
         <div class="wg-team-box" id="wg7-team-box"></div>
+        <div class="checklist-section" id="accordion-wg7"></div>
       </div>
     </div>
 
@@ -2797,8 +2838,8 @@ function renderWgTeamBox(id) {
     ? data.members.map((m, i) => `
         <tr>
           <td class="wg-col-idx">${i + 1}</td>
-          <td class="wg-team-name-cell"><input type="text" class="wg-team-cell-input" value="${escapeHtml(m.name)}" placeholder="نام عضو" onchange="updateWgMemberField('${id}', ${i}, 'name', this.value)"></td>
-          <td><input type="text" class="wg-team-cell-input" value="${escapeHtml(m.role)}" placeholder="سمت" onchange="updateWgMemberField('${id}', ${i}, 'role', this.value)"></td>
+          <td class="wg-team-name-cell"><span class="wg-mobile-label">نام:</span><input type="text" class="wg-team-cell-input" value="${escapeHtml(m.name)}" placeholder="نام عضو" onchange="updateWgMemberField('${id}', ${i}, 'name', this.value)"></td>
+          <td class="wg-team-role-cell"><span class="wg-mobile-label">سمت:</span><input type="text" class="wg-team-cell-input" value="${escapeHtml(m.role)}" placeholder="سمت" onchange="updateWgMemberField('${id}', ${i}, 'role', this.value)"></td>
           <td class="wg-col-actions no-print">
             <button class="btn btn-outline btn-sm btn-icon" onclick="moveWgMember('${id}', ${i}, -1)" title="جابه‌جایی به بالا" ${i === 0 ? 'disabled' : ''}>▲</button>
             <button class="btn btn-outline btn-sm btn-icon" onclick="moveWgMember('${id}', ${i}, 1)" title="جابه‌جایی به پایین" ${i === lastIdx ? 'disabled' : ''}>▼</button>
@@ -2826,19 +2867,22 @@ function renderWgTeamBox(id) {
             <tbody>${rowsHtml}</tbody>
           </table>
         </div>
-        <div class="wg-team-add-row no-print">
-          <input type="text" class="form-input" id="${id}-mem-name" placeholder="نام عضو" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
-          <input type="text" class="form-input" id="${id}-mem-role" placeholder="سمت (اختیاری)" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
-          <button class="btn btn-primary btn-sm" onclick="addWgMember('${id}')">➕ افزودن عضو</button>
+        <div class="wg-team-controls-row no-print">
+          <div class="wg-team-add-inline">
+            <input type="text" class="form-input" id="${id}-mem-name" placeholder="نام عضو جدید" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
+            <input type="text" class="form-input" id="${id}-mem-role" placeholder="سمت (اختیاری)" onkeydown="if(event.key==='Enter'){event.preventDefault();addWgMember('${id}');}">
+            <button class="btn btn-primary btn-sm" onclick="addWgMember('${id}')">➕ افزودن عضو</button>
+          </div>
         </div>
-        <div class="wg-team-divider"></div>
-        <div class="form-group">
-          <label class="form-label">مسئول اجرا</label>
-          <input type="text" class="form-input" id="${id}-responsible" placeholder="نام مسئول اجرا" value="${escapeHtml(data.responsible)}" oninput="updateWgField('${id}','responsible', this.value)">
-        </div>
-        <div class="form-group">
-          <label class="form-label">زمان اجرا</label>
-          <input type="text" class="form-input" id="${id}-exectime" placeholder="مثلاً: تا پایان شهریورماه" value="${escapeHtml(data.execTime)}" oninput="updateWgField('${id}','execTime', this.value)">
+        <div class="wg-team-meta-row">
+          <div class="form-group">
+            <label class="form-label">مسئول اجرا</label>
+            <input type="text" class="form-input" id="${id}-responsible" placeholder="نام مسئول اجرا" value="${escapeHtml(data.responsible)}" oninput="updateWgField('${id}','responsible', this.value)">
+          </div>
+          <div class="form-group">
+            <label class="form-label">زمان اجرا</label>
+            <input type="text" class="form-input" id="${id}-exectime" placeholder="مثلاً: تا پایان شهریورماه" value="${escapeHtml(data.execTime)}" oninput="updateWgField('${id}','execTime', this.value)">
+          </div>
         </div>
       </div>
     </div>`;
