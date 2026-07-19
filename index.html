@@ -2230,103 +2230,268 @@ function printDocCellInner(d) {
 }
 
 const PRINT_CELL_CSS = `
-  .cell, .tcell {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    overflow: hidden; border: 1px solid #d8dbe0; border-radius: 8px;
-    background: #fafbfc; padding: 6px; break-inside: avoid; page-break-inside: avoid;
+  .cell {
+    overflow: hidden;
+    border: 2px solid #4a1060;
+    border-radius: 5px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 3px;
+    box-sizing: border-box;
   }
-  .cell img, .tcell img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
-  .pdf-card { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #556; width: 100%; height: 100%; }
-  .pdf-icon { font-size: 34px; }
-  .pdf-name { font-size: 10.5px; text-align: center; word-break: break-all; padding: 0 6px; line-height: 1.4; }
-  .cap { font-size: 9.5px; color: #666; margin-top: 4px; text-align: center; flex-shrink: 0; }
+  .cell img {
+    width: 100%; height: 100%;
+    object-fit: contain; display: block; flex: 1; min-height: 0;
+  }
+  .pdf-card {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 6px; color: #556;
+    width: 100%; flex: 1; padding: 8px;
+  }
+  .pdf-icon { font-size: 30px; }
+  .pdf-name { font-size: 9px; text-align: center; word-break: break-all; line-height: 1.3; }
+  .cap {
+    font-size: 8px; color: #444; text-align: center;
+    padding: 2px 3px; background: rgba(255,255,255,0.92);
+    flex-shrink: 0; line-height: 1.2;
+  }
 `;
 
+function printTitleHtml(title) {
+  return `<div class="print-title-bar">
+    <span class="deco">&#8592;</span>
+    <span class="title-text">${title}</span>
+    <span class="deco">&#8594;</span>
+  </div>`;
+}
+
+const PRINT_TITLE_CSS = `
+  .print-title-bar {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; direction: rtl; flex-shrink: 0;
+    height: var(--title-h);
+  }
+  .title-text {
+    font-size: 16px; font-weight: bold; color: #3d0a5e;
+    border: 2px solid #3d0a5e; border-radius: 6px;
+    padding: 4px 20px; text-align: center; background: #fff;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    max-width: 80vw;
+  }
+  .deco { color: #3d0a5e; font-size: 16px; flex-shrink: 0; }
+`;
+
+/* رویکرد جدید: همه چیز درون یک flex-column با ارتفاع ثابت 100vh */
+function buildPrintPage(title, cells, cols, extraMeta) {
+  const n = cells.length;
+  const rows = Math.ceil(n / cols);
+  return `<!DOCTYPE html><html dir="rtl" lang="fa"><head>
+  <meta charset="UTF-8">
+  <title>${title}</title>
+  <style>
+    @page { size: A4 landscape; margin: 7mm 8mm; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%; height: 100%;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #fff; color: #1a202c;
+      overflow: hidden;
+    }
+    :root {
+      --title-h: 28px;
+      --meta-h: ${extraMeta ? '18px' : '0px'};
+      --gap: 3mm;
+      --cols: ${cols};
+      --rows: ${rows};
+    }
+    .page-wrap {
+      width: 100%; height: 100vh;
+      display: flex; flex-direction: column;
+      gap: 3mm; padding: 0;
+    }
+    ${PRINT_TITLE_CSS}
+    .meta-bar {
+      font-size: 9px; color: #666; text-align: center;
+      flex-shrink: 0; height: var(--meta-h);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .grid-wrap {
+      flex: 1; min-height: 0;
+      display: grid;
+      grid-template-columns: repeat(${cols}, 1fr);
+      grid-template-rows: repeat(${rows}, 1fr);
+      gap: 3mm;
+    }
+    ${PRINT_CELL_CSS}
+    .cell { width: 100%; height: 100%; }
+    .ph-box {
+      flex: 1; border: 2px dashed #ccc; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: #ddd; width: 100%;
+    }
+  </style>
+  </head>
+  <body onload="setTimeout(function(){window.print();},400)">
+    <div class="page-wrap">
+      ${printTitleHtml(title)}
+      ${extraMeta ? `<div class="meta-bar">${extraMeta}</div>` : ''}
+      <div class="grid-wrap">${cells.join('')}</div>
+    </div>
+  </body></html>`;
+}
+
+/* صفحه‌ای که هر ایتم یک صفحه جداگانه دارد (multi-page) */
+function buildMultiPagePrint(pages) {
+  let allPagesHtml = '';
+  pages.forEach((pg, i) => {
+    const { title, cells, cols, extraMeta } = pg;
+    const n = cells.length;
+    const rows = Math.ceil(n / cols);
+    const isLast = i === pages.length - 1;
+    allPagesHtml += `
+      <div class="ppage" style="grid-template-rows: 28px ${extraMeta ? '18px' : ''} repeat(${rows}, 1fr);">
+        ${printTitleHtml(title)}
+        ${extraMeta ? `<div class="meta-bar">${extraMeta}</div>` : ''}
+        <div class="grid-wrap" style="grid-template-columns:repeat(${cols},1fr);grid-template-rows:repeat(${rows},1fr);">
+          ${cells.join('')}
+        </div>
+      </div>`;
+  });
+
+  return `<!DOCTYPE html><html dir="rtl" lang="fa"><head>
+  <meta charset="UTF-8"><title>چاپ</title>
+  <style>
+    @page { size: A4 landscape; margin: 7mm 8mm; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { font-family: Tahoma, Arial, sans-serif; background: #fff; color: #1a202c; }
+    .ppage {
+      width: 100%; height: 100vh;
+      display: grid; gap: 3mm;
+      page-break-after: always; break-after: page;
+    }
+    .ppage:last-child { page-break-after: auto; break-after: auto; }
+    ${PRINT_TITLE_CSS}
+    .meta-bar { font-size: 9px; color: #666; text-align: center; display:flex; align-items:center; justify-content:center; }
+    .grid-wrap { display: grid; gap: 3mm; min-height: 0; }
+    ${PRINT_CELL_CSS}
+    .cell { width: 100%; height: 100%; }
+    .ph-box {
+      flex: 1; border: 2px dashed #ccc; border-radius: 5px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; color: #ddd; width: 100%;
+    }
+  </style>
+  </head>
+  <body onload="setTimeout(function(){window.print();},500)">
+    ${allPagesHtml}
+  </body></html>`;
+}
+
 function gridDimsForCount(n) {
-  if (n <= 3) return { cols: n, rows: 1 };
+  if (n === 1) return { cols: 1, rows: 1 };
+  if (n === 2) return { cols: 2, rows: 1 };
+  if (n === 3) return { cols: 3, rows: 1 };
   if (n === 4) return { cols: 2, rows: 2 };
   if (n <= 6) return { cols: 3, rows: 2 };
   if (n <= 9) return { cols: 3, rows: 3 };
+  if (n <= 12) return { cols: 4, rows: 3 };
   const cols = Math.ceil(Math.sqrt(n));
   return { cols, rows: Math.ceil(n / cols) };
 }
 
-function printFullChecklist() {
-  const EMPTY_PLACEHOLDERS = 6; // تعداد جای خالی عکس برای آیتم‌های بدون مستند
-  let pagesHtml = '';
-  checklistData.forEach((sec, si) => {
-    sec.items.forEach((item, ii) => {
+// ─── نسبت‌ابعاد-محور: چیدمان گرید را طوری انتخاب می‌کند که شکل هر خانه
+// به نسبت واقعی عکس‌ها نزدیک باشه، تا فضای خالی داخل کادر به حداقل برسه ───
+function loadImageAspect(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 1.33);
+    img.onerror = () => resolve(1.33);
+    img.src = src;
+  });
+}
+
+async function getDocsAspect(docs) {
+  if (!docs.length) return 1.33;
+  const ratios = await Promise.all(docs.map(d => (d.type === 'pdf' ? Promise.resolve(0.78) : loadImageAspect(d.data))));
+  const sorted = ratios.slice().sort((a, b) => a - b);
+  return sorted[Math.floor(sorted.length / 2)]; // میانه، برای مقاومت در برابر عکس‌های نامتعارف
+}
+
+// نسبت تقریبی عرض به ارتفاع فضای قابل‌استفاده‌ی گرید روی صفحه A4 افقی (بعد از کسر حاشیه و نوار عنوان)
+const GRID_AREA_ASPECT = 1.5;
+
+function bestGridDims(n, imgAspect) {
+  let best = null;
+  const maxCols = Math.max(1, Math.min(n, 6));
+  for (let cols = 1; cols <= maxCols; cols++) {
+    const rows = Math.ceil(n / cols);
+    const cellAspect = (GRID_AREA_ASPECT * rows) / cols;
+    const score = Math.abs(Math.log(cellAspect / imgAspect)) + (cols * rows - n) * 0.05;
+    if (!best || score < best.score) best = { cols, rows, score };
+  }
+  return { cols: best.cols, rows: best.rows };
+}
+
+async function bestGridDimsForDocs(docs) {
+  if (!docs.length) return { cols: 3, rows: 2 };
+  const aspect = await getDocsAspect(docs);
+  return bestGridDims(docs.length, aspect);
+}
+
+function makeCellHtml(d) {
+  return `<div class="cell">${printDocCellInner(d)}${d.name ? `<div class="cap">${escapeHtml(d.name)}</div>` : ''}</div>`;
+}
+
+function makePlaceholderCell() {
+  return `<div class="cell"><div class="ph-box">📷</div></div>`;
+}
+
+async function printFullChecklist() {
+  const pages = [];
+  for (const [si, sec] of checklistData.entries()) {
+    for (const [ii, item] of sec.items.entries()) {
       const key = `${si}-${ii}`;
       const docs = checklistDocs[key] || [];
       const status = checklistStatus[key] || 'notstarted';
       const resp = checklistResp[key] || '';
       const statusLabel = STATUS_LABELS[status];
-      let cellsHtml, dims;
+      const pageTitle = `${sec.section} — ${item}`;
+      let cells, cols;
       if (docs.length) {
-        dims = gridDimsForCount(docs.length);
-        cellsHtml = docs.map(d => `<div class="cell">${printDocCellInner(d)}<div class="cap">${escapeHtml(d.name || '')}</div></div>`).join('');
+        const dims = await bestGridDimsForDocs(docs);
+        cols = dims.cols;
+        cells = docs.map(d => makeCellHtml(d));
+        // پد کردن تا گرید کامل بشه
+        while (cells.length < cols * dims.rows) {
+          cells.push(`<div class="cell" style="visibility:hidden;"></div>`);
+        }
       } else {
-        dims = gridDimsForCount(EMPTY_PLACEHOLDERS);
-        cellsHtml = Array.from({ length: EMPTY_PLACEHOLDERS }).map(() =>
-          `<div class="cell placeholder"><div class="ph-box">📷</div></div>`
-        ).join('');
+        cols = 3;
+        cells = Array.from({ length: 6 }, () => makePlaceholderCell());
       }
-      pagesHtml += `
-        <section class="ppage">
-          <h2>${sec.section} — ${item}</h2>
-          <div class="meta">وضعیت: <strong>${statusLabel}</strong>${resp ? ' &nbsp;•&nbsp; مسئول اجرا: ' + resp : ''}</div>
-          <div class="grid" style="grid-template-columns:repeat(${dims.cols},1fr);grid-template-rows:repeat(${dims.rows},1fr);">${cellsHtml}</div>
-        </section>`;
-    });
-  });
+      const meta = resp ? `مسئول اجرا: ${resp} | وضعیت: ${statusLabel}` : `وضعیت: ${statusLabel}`;
+      pages.push({ title: pageTitle, cells, cols, extraMeta: meta });
+    }
+  }
   const w = window.open('', '_blank');
-  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>چاپ کامل چک‌لیست</title>
-    <style>
-      @page { size: A4 landscape; margin: 10mm 12mm; }
-      * { box-sizing: border-box; }
-      html, body { margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
-      .ppage { height: 180mm; display: flex; flex-direction: column; page-break-after: always; }
-      .ppage:last-child { page-break-after: auto; }
-      h2 { font-size: 15px; margin: 0 0 4px; border-bottom: 2px solid #c9a227; padding-bottom: 6px; flex-shrink: 0; }
-      .meta { font-size: 11px; color: #666; margin-bottom: 12px; flex-shrink: 0; }
-      .grid { flex: 1; min-height: 0; display: grid; gap: 8mm; }
-      ${PRINT_CELL_CSS}
-      .cell { height: 100%; }
-      .cell.placeholder { background: #fff; }
-      .ph-box {
-        width: 100%; height: 100%; border: 2px dashed #bbb; border-radius: 8px;
-        display: flex; align-items: center; justify-content: center; font-size: 28px; color: #ccc;
-        background: #fafafa;
-      }
-    </style></head>
-    <body onload="setTimeout(function(){window.print();}, 600)">${pagesHtml}</body></html>`;
-  w.document.write(html);
+  w.document.write(buildMultiPagePrint(pages));
   w.document.close();
 }
 
-function printChecklistDocs(key) {
+async function printChecklistDocs(key) {
   const [si, ii] = key.split('-').map(Number);
   const title = (checklistData[si] && checklistData[si].items[ii]) || 'مستندات آیتم';
   const docs = checklistDocs[key] || [];
   if (!docs.length) { showNotification('مستندی برای چاپ در این آیتم وجود ندارد', 'error'); return; }
-  const dims = gridDimsForCount(docs.length);
-  const cells = docs.map(d => `<div class="cell">${printDocCellInner(d)}<div class="cap">${escapeHtml(d.name || '')}</div></div>`).join('');
+  const dims = await bestGridDimsForDocs(docs);
+  const cells = docs.map(d => makeCellHtml(d));
+  while (cells.length < dims.cols * dims.rows) cells.push(`<div class="cell" style="visibility:hidden;"></div>`);
   const w = window.open('', '_blank');
-  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${title}</title>
-    <style>
-      @page { size: A4 landscape; margin: 10mm 12mm; }
-      * { box-sizing: border-box; }
-      html, body { height: 100%; margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
-      .page { height: 180mm; display: flex; flex-direction: column; }
-      h2 { font-size: 15px; margin: 0 0 12px; border-bottom: 2px solid #c9a227; padding-bottom: 8px; flex-shrink: 0; }
-      .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(${dims.cols}, 1fr); grid-template-rows: repeat(${dims.rows}, 1fr); gap: 8mm; }
-      ${PRINT_CELL_CSS}
-      .cell { height: 100%; }
-    </style></head>
-    <body onload="setTimeout(function(){window.print();}, 400)">
-      <div class="page"><h2>${title}</h2><div class="grid">${cells}</div></div>
-    </body></html>`;
-  w.document.write(html);
+  w.document.write(buildPrintPage(title, cells, dims.cols, null));
   w.document.close();
 }
 
@@ -3024,67 +3189,41 @@ function viewSectionDoc(key, i) {
   w.document.close();
 }
 
-function printSectionItemDocs(key) {
+async function printSectionItemDocs(key) {
   const [sectionId, idxStr] = key.split(/-(?=[0-9]+$)/);
   const idx = Number(idxStr);
   const combinedTitles = (SECTION_TITLES[sectionId] || []).concat(customSectionItems[sectionId] || []);
   const title = combinedTitles[idx] || 'مستندات';
   const docs = sectionDocs[key] || [];
   if (!docs.length) { showNotification('مستندی برای چاپ در این عنوان وجود ندارد', 'error'); return; }
-  const dims = gridDimsForCount(docs.length);
-  const cells = docs.map(d => `<div class="cell">${printDocCellInner(d)}<div class="cap">${escapeHtml(d.name || '')}</div></div>`).join('');
+  const dims = await bestGridDimsForDocs(docs);
+  const cells = docs.map(d => makeCellHtml(d));
+  while (cells.length < dims.cols * dims.rows) cells.push(`<div class="cell" style="visibility:hidden;"></div>`);
   const w = window.open('', '_blank');
-  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${title}</title>
-    <style>
-      @page { size: A4 landscape; margin: 10mm 12mm; }
-      * { box-sizing: border-box; }
-      html, body { height: 100%; margin: 0; font-family: Tahoma, Arial, sans-serif; color: #1a202c; }
-      .page { height: 180mm; display: flex; flex-direction: column; }
-      h2 { font-size: 15px; margin: 0 0 12px; border-bottom: 2px solid #c9a227; padding-bottom: 8px; flex-shrink: 0; }
-      .grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(${dims.cols}, 1fr); grid-template-rows: repeat(${dims.rows}, 1fr); gap: 8mm; }
-      ${PRINT_CELL_CSS}
-      .cell { height: 100%; }
-    </style></head>
-    <body onload="setTimeout(function(){window.print();}, 400)"><div class="page"><h2>${title}</h2><div class="grid">${cells}</div></div></body></html>`;
-  w.document.write(html);
+  w.document.write(buildPrintPage(title, cells, dims.cols, null));
   w.document.close();
 }
 
-function printSectionAll(sectionId) {
+async function printSectionAll(sectionId) {
   const titles = (SECTION_TITLES[sectionId] || []).concat(customSectionItems[sectionId] || []);
-  const pageTitle = SECTION_PAGE_TITLES[sectionId] || '';
-  let blocksHtml = '';
-  titles.forEach((title, idx) => {
+  const pages = [];
+  for (const [idx, title] of titles.entries()) {
     const key = `${sectionId}-${idx}`;
     const docs = sectionDocs[key] || [];
-    let inner;
+    let cells, cols;
     if (docs.length) {
-      const dims = gridDimsForCount(docs.length);
-      const cellHeight = Math.min(120, Math.max(50, Math.round(230 / dims.rows)));
-      inner = `<div class="tgrid" style="grid-template-columns:repeat(${dims.cols},1fr);">${docs.map(d =>
-        `<div class="tcell" style="height:${cellHeight}mm">${printDocCellInner(d)}</div>`
-      ).join('')}</div>`;
+      const dims = await bestGridDimsForDocs(docs);
+      cols = dims.cols;
+      cells = docs.map(d => makeCellHtml(d));
+      while (cells.length < cols * dims.rows) cells.push(`<div class="cell" style="visibility:hidden;"></div>`);
     } else {
-      inner = `<div class="no-doc">بدون مستند</div>`;
+      cols = 3;
+      cells = Array.from({ length: 6 }, () => makePlaceholderCell());
     }
-    blocksHtml += `<section class="tblock"><h3>${title}</h3>${inner}</section>`;
-  });
+    pages.push({ title, cells, cols, extraMeta: null });
+  }
   const w = window.open('', '_blank');
-  const html = `<!DOCTYPE html><html dir="rtl" lang="fa"><head><meta charset="UTF-8"><title>${pageTitle}</title>
-    <style>
-      @page { size: A4 landscape; margin: 10mm 12mm; }
-      * { box-sizing: border-box; }
-      body { font-family: Tahoma, Arial, sans-serif; color: #1a202c; margin: 0; padding: 0; }
-      h1 { font-size: 18px; border-bottom: 3px solid #c9a227; padding-bottom: 10px; margin: 0 0 16px; }
-      .tblock { page-break-inside: avoid; break-inside: avoid; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed #ddd; }
-      .tblock:last-child { border-bottom: none; }
-      h3 { font-size: 13.5px; background: #f3f4f6; padding: 7px 12px; border-radius: 6px; margin: 0 0 10px; }
-      .tgrid { display: grid; gap: 8mm; }
-      ${PRINT_CELL_CSS}
-      .no-doc { color: #999; font-size: 12px; padding: 10px 4px; }
-    </style></head>
-    <body onload="setTimeout(function(){window.print();}, 500)"><h1>${pageTitle}</h1>${blocksHtml}</body></html>`;
-  w.document.write(html);
+  w.document.write(buildMultiPagePrint(pages));
   w.document.close();
 }
 
